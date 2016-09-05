@@ -5915,14 +5915,24 @@ process.HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_v1 = cms.Path( process.HLT
 process.HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p087_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8DiPFJet300200TrimMass30BTagCSVp087 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK4CaloJetsSequence + process.HLTFastPrimaryVertexSequence + process.hltFastPVPixelVertexSelector + process.HLTBtagCSVSequenceL3 + process.hltBTagCaloCSVp087Single + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8TrimModJets + process.hltAK8DiPFJet200TrimMod + process.hltAK8SinglePFJet300TrimMod + process.hltAK8PFJet200TrimModMass30 + process.HLTEndSequence )
 process.HLT_AK8DiPFJet300_200_TrimMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8DiPFJet300200TrimMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8TrimModJets + process.hltAK8DiPFJet200TrimMod + process.hltAK8SinglePFJet300TrimMod + process.hltAK8PFJet200TrimModMass30 + process.HLTEndSequence )
 
+import HLTrigger.HLTfilters.triggerResultsFilter_cfi as hlt
 
-process.HLTSchedule = cms.Schedule( *(process.HLT_AK8PFJet400_TrimMass30_v1, process.HLT_AK8PFJet420_TrimMass30_v1, process.HLT_AK8PFHT800_TrimMass50_v1, process.HLT_AK8PFHT850_TrimMass50_v1, process.HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p087_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_v1 ))
+process.filter_any_or = hlt.triggerResultsFilter.clone(
+		triggerConditions = ( 'HLT_AK8PFJet400_TrimMass30*', 'HLT_PFHT900*' ),
+		#hltResults = cms.InputTag( "TriggerResults", "", "TEST" ),
+		#hltResults = cms.InputTag( "TriggerResults::TEST" ),
+		l1tResults = '',
+		throw = False
+		)
+
+process.path_any_or   = cms.Path( process.filter_any_or )
+
+process.HLTSchedule = cms.Schedule( *(process.HLT_AK8PFJet400_TrimMass30_v1, process.HLT_AK8PFJet420_TrimMass30_v1, process.HLT_AK8PFHT800_TrimMass50_v1, process.HLT_AK8PFHT850_TrimMass50_v1, process.HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p087_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_v1,  process.path_any_or ))
 
 
 process.source = cms.Source( "PoolSource",
     fileNames = cms.untracked.vstring(
-    #    'file:RelVal_Raw_GRun_DATA.root',
-    '/store/data/Run2016E/JetHT/RAW/v2/000/276/950/00000/226BAA11-364D-E611-8791-FA163E84C5C4.root',
+	'/store/data/Run2016E/JetHT/RAW/v2/000/277/069/00000/0293DF99-F74D-E611-B8D6-02163E011C4F.root',
     ),
     inputCommands = cms.untracked.vstring(
         'keep *'
@@ -6004,11 +6014,11 @@ _customInfo['globalTags']= {}
 _customInfo['globalTags'][True ] = "auto:run2_hlt_GRun"
 _customInfo['globalTags'][False] = "auto:run2_mc_GRun"
 _customInfo['inputFiles']={}
-_customInfo['inputFiles'][True]  = '/store/data/Run2016E/JetHT/RAW/v2/000/276/950/00000/226BAA11-364D-E611-8791-FA163E84C5C4.root'
+_customInfo['inputFiles'][True]  = '/store/data/Run2016E/JetHT/RAW/v2/000/277/069/00000/0293DF99-F74D-E611-B8D6-02163E011C4F.root'
 _customInfo['inputFiles'][False] = "file:RelVal_Raw_GRun_MC.root"
 _customInfo['maxEvents' ]=  100
 _customInfo['globalTag' ]= "auto:run2_hlt_GRun"
-_customInfo['inputFile' ]=  ['/store/data/Run2016E/JetHT/RAW/v2/000/276/950/00000/226BAA11-364D-E611-8791-FA163E84C5C4.root']
+_customInfo['inputFile' ]=  ['/store/data/Run2016E/JetHT/RAW/v2/000/277/069/00000/0293DF99-F74D-E611-B8D6-02163E011C4F.root']
 _customInfo['realData'  ]=  True
 from HLTrigger.Configuration.customizeHLTforALL import customizeHLTforAll
 process = customizeHLTforAll(process,"GRun",_customInfo)
