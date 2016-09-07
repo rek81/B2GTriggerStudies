@@ -9,13 +9,13 @@ import glob
 
 config = config()
 
-version = 'v02p2'
+version = 'v04'
 
 config.General.requestName = ''
 config.General.workArea = 'crab_projects'
 
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = 'TestNewTriggers.py'
+config.JobType.psetName = 'B2GTriggers.py' #'TestNewTriggers.py'
 config.JobType.allowUndistributedCMSSW = True
 config.General.transferLogs = True
 
