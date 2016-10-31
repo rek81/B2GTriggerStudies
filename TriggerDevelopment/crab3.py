@@ -9,7 +9,7 @@ import glob
 
 config = config()
 
-version = 'v04'
+version = 'v04p1'
 
 config.General.requestName = ''
 config.General.workArea = 'crab_projects'

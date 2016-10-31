@@ -6222,6 +6222,12 @@ process.AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_PFHT900_filter = process.AK8PF
 		triggerConditions = ( 'HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087*', 'HLT_PFHT900*' ) )
 		#triggerConditions = cms.vstring( 'HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087* AND HLT_PFHT900*' ) )
 process.AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_PFHT900_path   = cms.EndPath( process.AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_PFHT900_filter )
+
+process.AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_AK8DiPFJet300_200_TrimMass30_BTagCSV_p20_filter = process.AK8PFJet400_TrimMass30_PFHT900_filter.clone( 
+		triggerConditions = ( 'HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087*', 'HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p20*' ) )
+		#triggerConditions = cms.vstring( 'HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087* AND HLT_*' ) )
+process.AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_AK8DiPFJet300_200_TrimMass30_BTagCSV_p20_path   = cms.EndPath( process.AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_AK8DiPFJet300_200_TrimMass30_BTagCSV_p20_filter )
+
 process.AK8DiPFJet300_200_TrimMass30_BTagCSV_p087_PFHT900_filter = process.AK8PFJet400_TrimMass30_PFHT900_filter.clone( 
 		triggerConditions = ( 'HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p087*', 'HLT_PFHT900*' ) )
 		#triggerConditions = cms.vstring( 'HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p087* AND HLT_PFHT900*' ) )
