@@ -15,7 +15,7 @@ config.General.requestName = ''
 config.General.workArea = 'crab_projects'
 
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = 'hlt_B2GTriggers_2016data.py'
+config.JobType.psetName = 'hlt_B2GTriggers_2016Data.py'
 config.JobType.allowUndistributedCMSSW = True
 config.General.transferLogs = True
 
@@ -56,6 +56,6 @@ if __name__ == '__main__':
 
 		config.General.requestName = procName
 		print config
-		#p = Process(target=submit, args=(config,))
-		#p.start()
-		#p.join()
+		p = Process(target=submit, args=(config,))
+		p.start()
+		p.join()

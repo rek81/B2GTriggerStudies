@@ -3,7 +3,7 @@
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process( "TEST" )
-process.load("setup_data_dev_CMSSW_9_0_1_GRun_cff")
+process.load("setup_dev_CMSSW_9_0_1_GRun_cff")
 
 process.HLTConfigVersion = cms.PSet(
   tableName = cms.string('/users/algomez/B2GTriggers/V24')
@@ -7386,9 +7386,9 @@ process.maxEvents = cms.untracked.PSet(
 # enable TrigReport, TimeReport and MultiThreading
 process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool( True ),
-    numberOfThreads = cms.untracked.uint32( 4 ),
-    numberOfStreams = cms.untracked.uint32( 0 ),
-    sizeOfStackForThreadsInKB = cms.untracked.uint32( 10*1024 )
+#    numberOfThreads = cms.untracked.uint32( 4 ),
+#    numberOfStreams = cms.untracked.uint32( 0 ),
+#    sizeOfStackForThreadsInKB = cms.untracked.uint32( 10*1024 )
 )
 
 # override the GlobalTag, connection string and pfnPrefix
