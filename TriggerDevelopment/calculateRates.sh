@@ -1,90 +1,35 @@
-#nominal=HLT_PFHT900_v4
-#nominalRate="13.23"
-#nominal=HLT_PFHT750_4JetPt50_v6
-#nominalRate="19.8296"
-#nominal=HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_v3
-#nominalRate="28.82"
-#nominal=HLT_AK8PFHT700_TrimR0p1PT0p03Mass50_v6
-#nominalRate="19.15"
-nominal=HLT_AK8PFJet360_TrimMass30_v5
-nominalRate="9.51"
-totalEvtNominal=`awk '{ sum+=$3 } END {print sum}' ${nominal}*`
-totalPassNominal=`awk '{ sum+=$6 } END {print sum}' ${nominal}*`
+#nominal=HLT_PFHT900_v6
+#nominalRate="12.81"
+#listTriggers="HLT_PFHT900_v6 HLT_PFHT900_jet30eta2p4_v1 HLT_PFHT950_v1 HLT_PFHT950_jet30eta2p4_v1 HLT_PFHT1000_v1 HLT_PFHT1000_jet30eta2p4_v1"
 
-listTriggers="HLT_AK8PFJet360_TrimMass30_v5
-	HLT_AK8PFJet360_TrimMass30_Jet380_v1
-	HLT_AK8PFJet360_TrimMass30_Jet400_v1
-	HLT_AK8PFJet360_TrimMass30_Jet420_v1
-	HLT_AK8PFJet360_TrimMass30_Jet440_v1
-	HLT_AK8PFJet360_TrimMass30_Jet460_v1"
-#listTriggers="HLT_AK8PFHT700_TrimR0p1PT0p03Mass50_v6
-#	HLT_AK8PFHT700_TrimR0p1PT0p03Mass50_HT750_v1
-#	HLT_AK8PFHT700_TrimR0p1PT0p03Mass50_HT800_v1
-#	HLT_AK8PFHT700_TrimR0p1PT0p03Mass50_HT850_v1"
-#	HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_v4
-#	HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_HT650_v1
-#	HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_HT700_v1
-#	HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_HT750_v1
-#	HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_HT800_v1
-#	HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_HT850_v1
-#	HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_HT900_v1
-#	HLT_PFHT750_4JetPt50_v6
-#	HLT_PFHT750_4JetPt50_mod_v6
-#	HLT_PFHT750_4JetPt50_mod_Pt60_v1
-#	HLT_PFHT750_4JetPt50_mod_Pt70_v1
-#	HLT_PFHT750_4JetPt50_mod_Pt80_v1
-#	HLT_PFHT750_4JetPt50_mod_Pt90_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_v3
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt300Pt200_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt320Pt200_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt340Pt200_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt300Pt220_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt300Pt240_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt300Pt260_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt320Pt220_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt320Pt240_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_Pt320Pt260_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_v3
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt300Pt200_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt320Pt200_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt340Pt200_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt300Pt220_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt300Pt240_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt300Pt260_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt320Pt220_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt320Pt240_v1
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt320Pt260_v1
-#	HLT_PFHT800_v5"
-#listTriggers="HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt300Pt200_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt300Pt220_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt300Pt240_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt300Pt260_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt320Pt200_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt320Pt220_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt320Pt240_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt320Pt260_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_Pt340Pt200_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_v3_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt300Pt200_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt300Pt220_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt300Pt240_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt300Pt260_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt320Pt200_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt320Pt220_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt320Pt240_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt320Pt260_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_Pt340Pt200_v1_info.txt
-#	HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p56_v1_info.txt"
+#nominal=HLT_AK8PFJet360_TrimMass30_v7
+#nominalRate="8.13"
+#listTriggers="HLT_AK8PFJet360_TrimMass30_v7 HLT_AK8PFJet380_TrimMass30_v1 HLT_AK8PFJet400_TrimMass30_v1 HLT_AK8PFJet400_TrimMass20_v1 HLT_AK8PFJet400_TrimMass10_v1 HLT_AK8PFJet400_TrimMass40_v1 HLT_AK8PFJet400_TrimMass50_v1 HLT_AK8PFJet420_TrimMass30_v1 HLT_AK8PFJet440_TrimMass30_v1 HLT_AK8PFJet460_TrimMass30_v1 HLT_AK8PFJet360eta2p4_TrimMass30_v1 HLT_AK8PFJet380eta2p4_TrimMass30_v1 HLT_AK8PFJet400eta2p4_TrimMass30_v1 HLT_AK8PFJet420eta2p4_TrimMass30_v1 HLT_AK8PFJet440eta2p4_TrimMass30_v1 HLT_AK8PFJet460eta2p4_TrimMass30_v1"
+
+#nominal=HLT_AK8PFHT750_TrimMass50_v1
+#nominalRate="12.09"
+#listTriggers="HLT_AK8PFHT750_TrimMass50_v1 HLT_AK8PFHT800_TrimMass50_v1 HLT_AK8PFHT800_TrimMass50eta2p4_v1 HLT_AK8PFHT800_TrimMass50pt150_v1 HLT_AK8PFHT800_TrimMass50pt175_v1 HLT_AK8PFHT800_TrimMass50pt200_v1 HLT_AK8PFHT800_TrimMass40pt150_v1 HLT_AK8PFHT800_TrimMass30pt150_v1 HLT_AK8PFHT800_TrimMass20pt150_v1 HLT_AK8PFHT850_TrimMass50_v1 HLT_AK8PFHT900_TrimMass50_v1 HLT_AK8PFHT950_TrimMass50_v1 HLT_AK8PFHT1000_TrimMass50_v1"
+
+nominal=HLT_PFHT750_4JetPt70_v2
+nominalRate="8.93"
+listTriggers="HLT_PFHT750_4JetPt70_v2 HLT_PFHT750_4JetPt70eta2p4_v1 HLT_PFHT750_4JetPt60eta2p4_v1 HLT_PFHT800_4JetPt50_v2 HLT_PFHT850_4JetPt50_v1 HLT_PFHT900_4JetPt50_v1 HLT_PFHT950_4JetPt50_v1"
 
 
+totalEvtNominal=`awk '{ sum+=$4 } END {print sum}' ${1}/${nominal}*`
+totalPassNominal=`awk '{ sum+=$5 } END {print sum}' ${1}/${nominal}*`
+
+
+echo "Trigger	Rate"
 for trigger in $listTriggers; do
 	
-	totalEvtNew=`awk '{ sum+=$3 } END {print sum}' ${trigger}*`
-	totalPassNew=`awk '{ sum+=$6 } END {print sum}' ${trigger}*`
+	totalEvtNew=`awk '{ sum+=$4 } END {print sum}' ${1}/${trigger}*`
+	totalPassNew=`awk '{ sum+=$5 } END {print sum}' ${1}/${trigger}*`
 
 	#echo ${totalEvtNominal}, ${totalPassNominal}
 	#echo ${totalEvtNew}, ${totalPassNew}
 	rate=`bc -l <<< $(echo "${nominalRate}"*"${totalPassNew} / ${totalPassNominal}" )`
-	echo ${trigger} Rate ${rate}
+
+	#rate=`bc -l <<< $(echo "${totalPassNew} / ((1417*23.31))" )`
+	echo ${trigger} ${rate}
 
 done
