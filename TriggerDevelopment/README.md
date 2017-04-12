@@ -16,4 +16,4 @@ hltGetConfiguration /users/algomez/B2GTriggers/V24 --full --offline --data --unp
 ```
 
 
-More information in the twiki: [https://twiki.cern.ch/twiki/bin/viewauth/CMS/B2GTrigger](Beyond Two Generations Trigger Studies Page)
+More information in the twiki: [Beyond Two Generations Trigger Studies Page](https://twiki.cern.ch/twiki/bin/viewauth/CMS/B2GTrigger)
