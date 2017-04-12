@@ -51,7 +51,7 @@ if __name__ == '__main__':
 		#config.Data.lumiMask = '/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/Cert_271036-276811_13TeV_PromptReco_Collisions16_JSON.txt'
 		#config.Data.lumiMask = 'json277069_1e34.json'
 		config.Data.splitting = 'LumiBased'
-		config.Data.unitsPerJob = 10
+		config.Data.unitsPerJob = 1
 		config.Data.runRange = '283820'
 
 		config.General.requestName = procName
