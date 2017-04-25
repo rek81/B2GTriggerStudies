@@ -1,0 +1,15 @@
+<flags   EDM_PLUGIN="1"/>
+<use   name="FWCore/Framework"/>
+<use   name="FWCore/PluginManager"/>
+<use   name="FWCore/ParameterSet"/>
+<use   name="root"/>
+<use   name="boost"/>
+<use   name="DataFormats/Candidate"/>
+<use   name="DataFormats/JetReco"/>
+<use   name="DataFormats/PatCandidates"/>
+<use   name="DataFormats/HepMCCandidate"/>
+<use   name="CommonTools/UtilAlgos"/>
+<use   name="FWCore/ServiceRegistry"/>
+<use   name="PhysicsTools/PatUtils"/>
+<use   name="PhysicsTools/PatAlgos"/>
+<use   name="HLTrigger/HLTcore"/>

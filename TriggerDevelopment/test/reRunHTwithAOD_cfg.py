@@ -22,7 +22,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1000)
+    input = cms.untracked.int32(100)
 )
 
 # Input source
@@ -59,19 +59,24 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
         filterName = cms.untracked.string('')
     ),
     eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
-    fileName = cms.untracked.string('HLT2_HLT.root'),
-    outputCommands = process.RECOSIMEventContent.outputCommands,
+    fileName = cms.untracked.string('HLT2_HLT_test.root'),
+    #outputCommands = process.RECOSIMEventContent.outputCommands,
+    outputCommands =  cms.untracked.vstring('keep *',
+	    'keep *_hltPFHT*_*_*', 
+
+#		"keep *_TriggerResults_*_*",
+#		"keep *_hltTriggerSummaryAOD_*_*",
+	    ), #process.RECOSIMEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
-process.RECOSIMoutput.outputCommands = cms.untracked.vstring(
-		"drop *_*_*_RECO",
-		"keep *_ak8PFJets*_*_*",
-		"keep *_ak4PFJets*_*_*",
-		"keep *_TriggerResults_*_*",
-		"keep *_hltGtStage2ObjectMap_*_*",
-		"keep *_genParticles_*_*",
-		"keep *_ak8GenJets_*_*",
-		)
+#process.RECOSIMoutput.outputCommands = cms.untracked.vstring(
+#		"drop *_*_*_RECO",
+#		"keep *_ak8PFJets*_*_*",
+#		"keep *_ak4PFJets*_*_*",
+#		"keep *_hltGtStage2ObjectMap_*_*",
+#		"keep *_genParticles_*_*",
+#		"keep *_ak8GenJets_*_*",
+#		)
 
 # Additional output definition
 
@@ -83,15 +88,36 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '90X_upgrade2017_realistic_v6_C1', '')
 
 # Path and EndPath definitions
-process.HLTriggerFinalPath = cms.Path(process.hltGtStage2Digis+process.hltScalersRawToDigi+process.hltFEDSelector+process.hltTriggerSummaryAOD+process.hltTriggerSummaryRAW+process.hltBoolFalse)
-process.HLTriggerFirstPath = cms.Path(process.hltDummyConditions+process.hltGetRaw+process.hltBoolFalse)
+#process.HLTriggerFinalPath = cms.Path(process.hltGtStage2Digis+process.hltScalersRawToDigi+process.hltFEDSelector+process.hltTriggerSummaryAOD+process.hltTriggerSummaryRAW+process.hltBoolFalse)
+#process.HLTriggerFirstPath = cms.Path(process.hltDummyConditions+process.hltGetRaw+process.hltBoolFalse)
 process.endjob_step = cms.EndPath(process.endOfProcess)
 process.RECOSIMoutput_step = cms.EndPath(process.RECOSIMoutput)
+
+
+#### My Analyzer
+process.demo = cms.EDAnalyzer('TriggerEfficiencyPlots',
+                              recoJets = cms.InputTag("ak4PFJetsCHS"),
+                              primaryVertex = cms.InputTag("offlinePrimaryVertices"),
+			      triggerPath  = cms.string("HLT_PFHT900_v6"),
+			      minHT	   = cms.double( 900.0 ),
+			      minPt	   = cms.double( 0.0 ),
+			      minMass	  = cms.double( 0.0 ),
+                              triggerResults = cms.InputTag("TriggerResults::HLT2"),
+			      triggerObjects = cms.InputTag('hltTriggerSummaryAOD'),
+                              #et_Filter = cms.InputTag('hltEG27L1SingleEGOrEtFilter','','HLT2'),
+			      )
+
+process.TFileService = cms.Service("TFileService",
+                                   fileName = cms.string( "out.root" )
+                                   )
+process.demo_step = cms.EndPath(process.demo)
+
 
 # Schedule definition
 process.schedule = cms.Schedule()
 process.schedule.extend(process.HLTSchedule)
-process.schedule.extend([process.endjob_step,process.RECOSIMoutput_step])
+process.schedule.extend([process.endjob_step,process.RECOSIMoutput_step, process.demo_step])
+#process.schedule.extend([process.endjob_step,process.demo_step])
 
 # customisation of the process.
 
