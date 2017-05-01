@@ -17,6 +17,7 @@ git cms-merge-topic cms-tsg-storm:for83Xsamples
 scram b -j8
 
 git clone git@github.com:alefisico/B2GTriggerStudies.git -b CMSSW_9_0_1
+git clone git@github.com:cms-jet/JetToolbox.git JMEAnalysis/JetToolbox -b jetToolbox_80X_V2   ## for jet studies
 scram b -j 4
 cmsenv
 ```

@@ -18,6 +18,7 @@
 #include <memory>
 
 // user include files
+#include "B2GTriggerStudies/TriggerDevelopment/interface/CommonVariablesStructure.h"
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/EDAnalyzer.h"
 
@@ -33,11 +34,13 @@
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 
 #include "HLTrigger/HLTcore/interface/HLTConfigProvider.h"
+
 #include "DataFormats/Common/interface/TriggerResults.h"
-
-#include "DataFormats/HLTReco/interface/TriggerEvent.h"
+#include "FWCore/Common/interface/TriggerNames.h"
 #include "DataFormats/HLTReco/interface/TriggerObject.h"
+#include "DataFormats/HLTReco/interface/TriggerEvent.h"
 
+#include "DataFormats/HLTReco/interface/TriggerFilterObjectWithRefs.h"
 
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
@@ -48,6 +51,8 @@
 
 #include "DataFormats/VertexReco/interface/VertexFwd.h"
 #include "DataFormats/VertexReco/interface/Vertex.h"
+
+#include "DataFormats/METReco/interface/MET.h"
 
 #include "TMath.h"
 #include "TH2D.h"
@@ -88,7 +93,10 @@ class TriggerEfficiencyPlots : public edm::EDAnalyzer {
 		edm::EDGetTokenT<edm::TriggerResults> triggerResultsToken; 
   		edm::EDGetTokenT<trigger::TriggerEvent> triggerObjectsToken;
 		edm::EDGetTokenT<reco::PFJetCollection> recoJetsToken;
+		edm::EDGetTokenT<pat::JetCollection> patJetsToken;
 		edm::EDGetTokenT<reco::VertexCollection> offlinePV;
+		edm::EDGetTokenT<reco::PFJetCollection> htHLTToken;
+		edm::EDGetTokenT<trigger::TriggerFilterObjectWithRefs> m_theTriggerMETToken;
 		std::string triggerPath;
 		double minPt;
 		double minHT;
@@ -96,6 +104,9 @@ class TriggerEfficiencyPlots : public edm::EDAnalyzer {
 
 		HLTConfigProvider hltConfig;
 		int triggerBit;
+		std::vector<reco::METRef> jetRefVec;
+		int TriggerType_;
+
 };
 
 
@@ -104,7 +115,10 @@ TriggerEfficiencyPlots::TriggerEfficiencyPlots(const edm::ParameterSet& iConfig)
 	triggerResultsToken(consumes<edm::TriggerResults>(iConfig.getParameter<edm::InputTag> ( "triggerResults"))),
   	triggerObjectsToken(consumes<trigger::TriggerEvent>(iConfig.getParameter<edm::InputTag> ("triggerObjects"))),
 	recoJetsToken(consumes<reco::PFJetCollection>(iConfig.getParameter<edm::InputTag> ( "recoJets" ))),   			// Obtain inputs
-	offlinePV(consumes<reco::VertexCollection>(iConfig.getParameter<edm::InputTag> ( "primaryVertex" )))   			// Obtain inputs
+	//patJetsToken(consumes<pat::JetCollection>(iConfig.getParameter<edm::InputTag> ( "patJets" ))),   			// Obtain inputs
+	offlinePV(consumes<reco::VertexCollection>(iConfig.getParameter<edm::InputTag> ( "primaryVertex" ))),
+	htHLTToken(consumes<reco::PFJetCollection>(iConfig.getParameter<edm::InputTag> ( "htHLT" )))
+	//m_theTriggerMETToken(consumes<trigger::TriggerFilterObjectWithRefs>(iConfig.getParameter<edm::InputTag> ( "METFilter" )))
 {
 	triggerPath		= iConfig.getParameter<std::string> ( "triggerPath" );   			// Obtain inputs
 	minHT			= iConfig.getParameter<double> ( "minHT" );   			// Obtain inputs
@@ -123,11 +137,31 @@ TriggerEfficiencyPlots::~TriggerEfficiencyPlots()
 //
 
 //In the next few lines one loops over all the trigger objects (corresponding to a given filter) and check whether one of them matches the reco object under study
-bool TriggerEfficiencyPlots::RecoHLTMatching(const edm::Event& iEvent, double recoeta, double recophi, edm::InputTag IT_filter, double dRmatching){
+/*bool TriggerEfficiencyPlots::RecoHLTMatching(const edm::Event& iEvent, double recoeta, double recophi, edm::InputTag filterNameTEST, double dRmatching){
 
-	edm::Handle<trigger::TriggerEvent> triggerObjectsSummary;
-	iEvent.getByToken(triggerObjectsToken ,triggerObjectsSummary);
-	trigger::TriggerObjectCollection selectedObjects;
+	edm::Handle<trigger::TriggerEvent> trigEvent;
+	iEvent.getByToken(triggerObjectsToken ,trigEvent);
+	edm::InputTag trigEventTag("hltTriggerSummaryAOD","","HLT");
+	std::string filterName("hltPFHT900Jet30"); 
+
+	trigger::size_type filterIndex = trigEvent->filterIndex( edm::InputTag(filterName,"",trigEventTag.process()));
+	//trigger::size_type filterIndex = trigEvent->filterIndex( filterName ); // edm::InputTag(filterName,"",trigEventTag.process()));
+	LogWarning("test") << "trigger filterIndex " << filterIndex << " " <<  trigEvent->sizeFilters() ;
+
+	if( filterIndex < trigEvent->sizeFilters() ){ 
+		
+		const trigger::Keys& trigKeys = trigEvent->filterKeys(filterIndex); 
+		const trigger::TriggerObjectCollection & trigObjColl(trigEvent->getObjects());
+		//now loop of the trigger objects passing filter
+		for( trigger::Keys::const_iterator keyIt=trigKeys.begin(); keyIt!=trigKeys.end(); ++keyIt ){ 
+
+			const trigger::TriggerObject& obj = trigObjColl[*keyIt];
+			LogWarning("trigger obj") << obj.pt() << " " << obj.eta();
+		}
+	}
+
+
+	//trigger::TriggerObjectCollection selectedObjects;
 
 	//LogWarning("test") << "triggerObjectsSummary";
 	if (triggerObjectsSummary.isValid()) {
@@ -147,6 +181,7 @@ bool TriggerEfficiencyPlots::RecoHLTMatching(const edm::Event& iEvent, double re
 	}
 	return false;
 }
+*/
 
 // ------------ method called for each event  ------------
 void TriggerEfficiencyPlots::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) {
@@ -160,7 +195,7 @@ void TriggerEfficiencyPlots::analyze(const edm::Event& iEvent, const edm::EventS
 		return;
 	}
 	if (changedConfig){
-		std::cout << "the curent menu is " << hltConfig.tableName() << std::endl;
+		std::cout << "the curent menu is " << hltConfig.tableName()  << std::endl;
 		triggerBit = -1;
 		for (size_t j = 0; j < hltConfig.triggerNames().size(); j++) {
 			std::cout << TString(hltConfig.triggerNames()[j]) << std::endl;
@@ -171,6 +206,8 @@ void TriggerEfficiencyPlots::analyze(const edm::Event& iEvent, const edm::EventS
 
 	}
 
+	//bool triggerPass =  checkORListOfTriggerBitsMiniAOD( TriggerNames triggerNames, Handle<TriggerResults> triggerBits, vector<string>  triggerPass  );
+
 	//open the trigger summary
 	edm::Handle<edm::TriggerResults> triggerResults;
 	iEvent.getByToken(triggerResultsToken, triggerResults);
@@ -180,47 +217,67 @@ void TriggerEfficiencyPlots::analyze(const edm::Event& iEvent, const edm::EventS
 	//edm::LogWarning("test")<< vertices->size();
 	//int NPV = vertices->size();
 	histos1D_[ "numPV" ]->Fill( vertices->size() );
+
 	
+	/*edm::Handle<trigger::TriggerFilterObjectWithRefs> TriggeredMET;
+	iEvent.getByToken(m_theTriggerMETToken,TriggeredMET);	
+	jetRefVec.clear();
+	TriggeredMET->getObjects( trigger::TriggerMET, jetRefVec);
+
+	for(auto & iCalo : jetRefVec) {  
+		LogWarning("HT") << iCalo->pt();
+	}*/
+		
+
+	edm::Handle<reco::PFJetCollection> htHLT;
+	iEvent.getByToken(htHLTToken, htHLT);
+	for(const reco::PFJet &iht : *htHLT){
+		LogWarning("HT") << iht.pt();
+	}
 
 	/*edm::InputTag triggerSummaryLabel_ = edm::InputTag("hltTriggerSummaryAOD", "", "HLT");
 	edm::Handle<trigger::TriggerEvent> triggerSummary;
 	iEvent.getByToken(triggerSummaryLabel_, triggerSummary);*/
 
+	//// CHS from AOD
 	edm::Handle<reco::PFJetCollection> recoJets;
 	iEvent.getByToken(recoJetsToken,recoJets);
-	TLorentzVector pat1Jet;
-	double patHT = 0;
+	TLorentzVector reco1Jet;
+	double recoHT = 0;
 	int nrecoJets =0;
 	for(const reco::PFJet &ijet : *recoJets ){
 		if ( ijet.pt() < minPt || abs( ijet.eta() ) > 2.4 ) continue;
-		patHT += ijet.pt();
-		if ( (nrecoJets++) == 1 ) pat1Jet.SetPtEtaPhiE( ijet.pt(), ijet.eta(), ijet.phi(), ijet.energy() );
-		//LogWarning("test") << "check 0 " << ijet.pt() ;
-		//bool matchedWithHLT = RecoHLTMatching(iEvent, ijet.eta(), ijet.phi(), edm::InputTag("hltPFHT1000Jet30::HLT2")); //hlt1AK8PFJetsTrimR0p1PT0p03Mass50","","HLT2"));
+		recoHT += ijet.pt();
+		if ( (nrecoJets++) == 1 ) {
+			reco1Jet.SetPtEtaPhiE( ijet.pt(), ijet.eta(), ijet.phi(), ijet.energy() );
+			histos1D_[ "recojet1PtDenom" ]->Fill( ijet.pt() );
+			if (triggerResults->accept(triggerBit)){
+				histos1D_[ "recojet1PtPassing" ]->Fill( ijet.pt() );
+			}
+		}
+		
+		//bool matchedWithHLT = RecoHLTMatching(iEvent, ijet.eta(), ijet.phi(), edm::InputTag("hltPFHT1000Jet30")); //hlt1AK8PFJetsTrimR0p1PT0p03Mass50","","HLT"));
 		//if(matchedWithHLT) histos1D_[ "patJetMass" ]->Fill( ijet.mass() );
 	}
 	//edm::LogWarning("test")<< hlt1Jet.M() << " " << hlt1Jet.Pt() << " " << hltHT ;
 
-
-	//if( hltHT > 0 ) histos1D_[ "hltJetMass" ]->Fill( hlt1Jet.M() );
-	//if( patHT > 0 ) histos1D_[ "patJetMass" ]->Fill( pat1Jet.M() );
-
-
-
-	/*/if( deltaEta && ( patHT > minHT ) && ( pat1Jet.M() > minMass ) ) {
-	if( ( patHT > minHT ) && ( pat1Jet.M() > minMass ) ) {
-
-		histos1D_[ "HTDenom" ]->Fill( patHT );
-		histos1D_[ "jetMassDenom" ]->Fill( pat1Jet.M() );
-		histos1D_[ "ptDenom" ]->Fill( pat1Jet.Pt() );
-
-
-		if (triggerResults->accept(triggerBit)){
-			histos1D_[ "HTPassing" ]->Fill( patHT );
-			histos1D_[ "jetMassPassing" ]->Fill( pat1Jet.M() );
-			histos1D_[ "ptPassing" ]->Fill( pat1Jet.Pt() );
-
+	/*/// Puppi from toolbox
+	edm::Handle<pat::JetCollection> patJets;
+	iEvent.getByToken(patJetsToken,patJets);
+	TLorentzVector pat1Jet;
+	double patHT = 0;
+	int npatJets =0;
+	for(const pat::Jet &ijet : *patJets ){
+		if ( ijet.pt() < minPt || abs( ijet.eta() ) > 2.4 ) continue;
+		patHT += ijet.pt();
+		if ( (npatJets++) == 1 ) {
+			pat1Jet.SetPtEtaPhiE( ijet.pt(), ijet.eta(), ijet.phi(), ijet.energy() );
+			histos1D_[ "patjet1PtDenom" ]->Fill( ijet.pt() );
+			if (triggerResults->accept(triggerBit)){
+				histos1D_[ "patjet1PtPassing" ]->Fill( ijet.pt() );
+			}
 		}
+		
 	}*/
 
 }
@@ -230,6 +287,16 @@ void TriggerEfficiencyPlots::analyze(const edm::Event& iEvent, const edm::EventS
 void TriggerEfficiencyPlots::beginJob() {
 
 	edm::Service< TFileService > fileService;
+
+
+	histos1D_[ "recojet1PtDenom" ] = fileService->make< TH1D >( "recojet1PtDenom", "recojet1PtDenom", 2000, 0., 2000);
+	histos1D_[ "recojet1PtPassing" ] = fileService->make< TH1D >( "recojet1PtPassing", "recojet1PtPassing", 2000, 0., 2000);
+
+	histos1D_[ "patjet1PtDenom" ] = fileService->make< TH1D >( "patjet1PtDenom", "patjet1PtDenom", 2000, 0., 2000);
+	histos1D_[ "patjet1PtPassing" ] = fileService->make< TH1D >( "patjet1PtPassing", "patjet1PtPassing", 2000, 0., 2000);
+
+
+
 	histos1D_[ "HTDenom" ] = fileService->make< TH1D >( "HTDenom", "HT", 100, 0., 2000);
 	histos1D_[ "HTDenom" ]->SetXTitle( "HT [GeV]" );
 
@@ -283,7 +350,7 @@ void TriggerEfficiencyPlots::endJob() {
 void TriggerEfficiencyPlots::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
 	edm::ParameterSetDescription desc;
 	desc.setUnknown();
-	desc.add<edm::InputTag>("triggerResults",edm::InputTag("TriggerResults::HLT2"));
+	desc.add<edm::InputTag>("triggerResults",edm::InputTag("TriggerResults::HLT"));
 	desc.add<edm::InputTag>("recoJets",edm::InputTag("ak4PFJetsCHS"));
 	desc.add<edm::InputTag>("primaryVertex",edm::InputTag("offlinePrimaryVertices"));
 	desc.add<std::string>("triggerPath", "HLT_PFHT900_v6");

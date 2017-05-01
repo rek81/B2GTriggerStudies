@@ -1,4 +1,4 @@
-# /users/algomez/B2GTriggers/V31 (CMSSW_9_0_0)
+# /users/algomez/B2GTriggers/V35 (CMSSW_9_0_0)
 
 import FWCore.ParameterSet.Config as cms
 
@@ -6,7 +6,7 @@ process = cms.Process( "TEST" )
 process.load("setup_data_dev_CMSSW_9_0_1_GRun_cff")
 
 process.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/users/algomez/B2GTriggers/V31')
+  tableName = cms.string('/users/algomez/B2GTriggers/V35')
 )
 
 process.hltTriggerType = cms.EDFilter( "HLTTriggerTypeFilter",
@@ -4778,11 +4778,11 @@ process.hltAK8SinglePFJet360TrimModMass30 = cms.EDFilter( "HLT1PFJet",
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
 )
-process.hltPreAK8PFJet360SDMass10 = cms.EDFilter( "HLTPrescaler",
+process.hltPreAK8PFJet360SDMass00 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
-process.hltAK8SDJets = cms.EDProducer( "FastjetJetProducer",
+process.hltAK8PFjetsSD = cms.EDProducer( "FastjetJetProducer",
     Active_Area_Repeats = cms.int32( 1 ),
     doAreaFastjet = cms.bool( False ),
     voronoiRfact = cms.double( -0.9 ),
@@ -4845,13 +4845,519 @@ process.hltAK8SDJets = cms.EDProducer( "FastjetJetProducer",
     beta = cms.double(0.0),
     R0   = cms.double(0.8),
 )
+process.hltAK8SinglePFJet360SDMass00 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 360.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 0.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet360SDMass10 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
 process.hltAK8SinglePFJet360SDMass10 = cms.EDFilter( "HLT1PFJet",
     saveTags = cms.bool( True ),
     MinPt = cms.double( 360.0 ),
     MinN = cms.int32( 1 ),
     MaxEta = cms.double( 2.4 ),
     MinMass = cms.double( 10.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet360SDMass20 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet360SDMass20 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 360.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 20.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet360SDMass30 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet360SDMass30 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 360.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet360SDMass40 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet360SDMass40 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 360.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 40.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet360SDMass50 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet360SDMass50 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 360.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 50.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet340SDMass00 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SingleCaloJet240eta2p4 = cms.EDFilter( "HLT1CaloJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 260.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( -1.0 ),
+    inputTag = cms.InputTag( "hltAK8CaloJetsCorrectedIDPassed" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 = cms.EDProducer( "PFJetsMatchedToFilteredCaloJetsProducer",
+    DeltaR = cms.double( 0.5 ),
+    CaloJetFilter = cms.InputTag( "hltAK8SingleCaloJet240eta2p4" ),
+    TriggerType = cms.int32( 85 ),
+    PFJetSrc = cms.InputTag( "hltAK8PFJetsCorrected" )
+)
+process.hltAK8SinglePFJet340SDMass00 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 340.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 0.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet340SDMass10 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet340SDMass10 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 340.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 10.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet340SDMass20 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet340SDMass20 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 340.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 20.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet340SDMass30 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet340SDMass30 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 340.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet340SDMass40 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet340SDMass40 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 340.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 40.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet340SDMass50 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet340SDMass50 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 340.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 50.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet320SDMass00 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet320SDMass00 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 320.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 0.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet320SDMass10 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet320SDMass10 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 320.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 10.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet320SDMass20 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet320SDMass20 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 320.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 20.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet320SDMass30 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet320SDMass30 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 320.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet320SDMass40 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet320SDMass40 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 320.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 40.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet320SDMass50 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet320SDMass50 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 320.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 50.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet300SDMass00 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet300SDMass00 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 300.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 0.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet300SDMass10 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet300SDMass10 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 300.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 10.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet300SDMass20 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet300SDMass20 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 300.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 20.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet300SDMass30 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet300SDMass30 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 300.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet300SDMass40 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet300SDMass40 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 300.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 40.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet300SDMass50 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet300SDMass50 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 300.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 50.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet380SDMass00 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet380SDMass00 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 380.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 0.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet380SDMass10 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet380SDMass10 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 380.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 10.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet380SDMass20 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet380SDMass20 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 380.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 20.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet380SDMass30 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet380SDMass30 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 380.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet380SDMass40 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet380SDMass40 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 380.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 40.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet380SDMass50 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet380SDMass50 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 380.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 50.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet400SDMass00 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet400SDMass00 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 400.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 0.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet400SDMass10 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet400SDMass10 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 400.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 10.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet400SDMass20 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet400SDMass20 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 400.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 20.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet400SDMass30 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet400SDMass30 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 400.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet400SDMass40 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet400SDMass40 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 400.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 40.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFJet400SDMass50 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8SinglePFJet400SDMass50 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 400.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 50.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
 )
@@ -5150,22 +5656,6 @@ process.hltAK8SinglePFJet370eta2p4TrimModMass50 = cms.EDFilter( "HLT1PFJet",
 process.hltPreAK8PFJet340eta2p4TrimMass50 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
-)
-process.hltAK8SingleCaloJet240eta2p4 = cms.EDFilter( "HLT1CaloJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 260.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.4 ),
-    MinMass = cms.double( -1.0 ),
-    inputTag = cms.InputTag( "hltAK8CaloJetsCorrectedIDPassed" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 = cms.EDProducer( "PFJetsMatchedToFilteredCaloJetsProducer",
-    DeltaR = cms.double( 0.5 ),
-    CaloJetFilter = cms.InputTag( "hltAK8SingleCaloJet240eta2p4" ),
-    TriggerType = cms.int32( 85 ),
-    PFJetSrc = cms.InputTag( "hltAK8PFJetsCorrected" )
 )
 process.hltAK8SinglePFJet340eta2p4TrimModMass50 = cms.EDFilter( "HLT1PFJet",
     saveTags = cms.bool( True ),
@@ -5653,72 +6143,9 @@ process.hltAK8PFHT750pt200 = cms.EDFilter( "HLTHtMhtFilter",
     htLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
     minHt = cms.vdouble( 750.0 )
 )
-process.hltPreAK8PFHT750SDMass50pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+process.hltPreAK8PFHT750SDMass10pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
-)
-process.hltAK8PFJetsSD = cms.EDProducer( "FastjetJetProducer",
-    Active_Area_Repeats = cms.int32( 5 ),
-    doAreaFastjet = cms.bool( False ),
-    voronoiRfact = cms.double( -9.0 ),
-    maxBadHcalCells = cms.uint32( 9999999 ),
-    doAreaDiskApprox = cms.bool( True ),
-    maxRecoveredEcalCells = cms.uint32( 9999999 ),
-    jetType = cms.string( "PFJet" ),
-    minSeed = cms.uint32( 0 ),
-    Ghost_EtaMax = cms.double( 6.0 ),
-    doRhoFastjet = cms.bool( False ),
-    jetAlgorithm = cms.string( "AntiKt" ),
-    nSigmaPU = cms.double( 1.0 ),
-    GhostArea = cms.double( 0.01 ),
-    Rho_EtaMax = cms.double( 4.4 ),
-    maxBadEcalCells = cms.uint32( 9999999 ),
-    useDeterministicSeed = cms.bool( True ),
-    doPVCorrection = cms.bool( False ),
-    maxRecoveredHcalCells = cms.uint32( 9999999 ),
-    rParam = cms.double( 0.8 ),
-    maxProblematicHcalCells = cms.uint32( 9999999 ),
-    doOutputJets = cms.bool( True ),
-    src = cms.InputTag( "hltParticleFlow" ),
-    inputEtMin = cms.double( 0.0 ),
-    puPtMin = cms.double( 10.0 ),
-    srcPVs = cms.InputTag( "hltPixelVertices" ),
-    jetPtMin = cms.double( 0.0 ),
-    radiusPU = cms.double( 0.8 ),
-    maxProblematicEcalCells = cms.uint32( 9999999 ),
-    doPUOffsetCorr = cms.bool( False ),
-    inputEMin = cms.double( 0.0 ),
-    useMassDropTagger = cms.bool( False ),
-    muMin = cms.double( -1.0 ),
-    subtractorName = cms.string( "" ),
-    muCut = cms.double( -1.0 ),
-    subjetPtMin = cms.double( -1.0 ),
-    useTrimming = cms.bool( False ),
-    muMax = cms.double( -1.0 ),
-    yMin = cms.double( -1.0 ),
-    useFiltering = cms.bool( False ),
-    rFilt = cms.double( 0.1 ),
-    yMax = cms.double( -1.0 ),
-    MinVtxNdof = cms.int32( 0 ),
-    MaxVtxZ = cms.double( 15.0 ),
-    UseOnlyVertexTracks = cms.bool( False ),
-    dRMin = cms.double( -1.0 ),
-    nFilt = cms.int32( -1 ),
-    usePruning = cms.bool( False ),
-    maxDepth = cms.int32( -1 ),
-    yCut = cms.double( -1.0 ),
-    DzTrVtxMax = cms.double( 0.0 ),
-    UseOnlyOnePV = cms.bool( False ),
-    rcut_factor = cms.double( -1.0 ),
-    sumRecHits = cms.bool( False ),
-    trimPtFracMin = cms.double( 0.03 ),
-    dRMax = cms.double( -1.0 ),
-    DxyTrVtxMax = cms.double( 0.0 ),
-    useCMSBoostedTauSeedingAlgorithm = cms.bool( False ),
-    useSoftDrop = cms.bool(True),
-    zcut = cms.double(0.1),
-    beta = cms.double(0.0),
-    R0   = cms.double(0.8),
 )
 process.hlt1AK8PFJetsSDMass10pt200eta2p4 = cms.EDFilter( "HLT1PFJet",
     saveTags = cms.bool( True ),
@@ -5726,9 +6153,202 @@ process.hlt1AK8PFJetsSDMass10pt200eta2p4 = cms.EDFilter( "HLT1PFJet",
     MinN = cms.int32( 1 ),
     MaxEta = cms.double( 2.4 ),
     MinMass = cms.double( 10.0 ),
-    inputTag = cms.InputTag( "hltAK8PFJetsSD" ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFHT800SDMass10pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT850SDMass10pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8PFHT850pt200 = cms.EDFilter( "HLTHtMhtFilter",
+    saveTags = cms.bool( True ),
+    mhtLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
+    meffSlope = cms.vdouble( 1.0 ),
+    minMeff = cms.vdouble( 0.0 ),
+    minMht = cms.vdouble( 0.0 ),
+    htLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
+    minHt = cms.vdouble( 850.0 )
+)
+process.hltPreAK8PFHT900SDMass10pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8PFHT900pt200 = cms.EDFilter( "HLTHtMhtFilter",
+    saveTags = cms.bool( True ),
+    mhtLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
+    meffSlope = cms.vdouble( 1.0 ),
+    minMeff = cms.vdouble( 0.0 ),
+    minMht = cms.vdouble( 0.0 ),
+    htLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
+    minHt = cms.vdouble( 900.0 )
+)
+process.hltPreAK8PFHT950SDMass10pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltAK8PFHT950pt200 = cms.EDFilter( "HLTHtMhtFilter",
+    saveTags = cms.bool( True ),
+    mhtLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
+    meffSlope = cms.vdouble( 1.0 ),
+    minMeff = cms.vdouble( 0.0 ),
+    minMht = cms.vdouble( 0.0 ),
+    htLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
+    minHt = cms.vdouble( 950.0 )
+)
+process.hltPreAK8PFHT750SDMass00pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hlt1AK8PFJetsSDMass00pt200eta2p4 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 200.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 0.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFHT800SDMass00pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT850SDMass00pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT900SDMass00pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT950SDMass00pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT750SDMass20pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hlt1AK8PFJetsSDMass20pt200eta2p4 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 200.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 20.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFHT800SDMass20pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT850SDMass20pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT900SDMass20pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT950SDMass20pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT750SDMass30pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hlt1AK8PFJetsSDMass30pt200eta2p4 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 200.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFHT800SDMass30pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT850SDMass30pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT900SDMass30pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT950SDMass30pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT750SDMass40pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hlt1AK8PFJetsSDMass40pt200eta2p4 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 200.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 40.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFHT800SDMass40pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT850SDMass40pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT900SDMass40pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT950SDMass40pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT750SDMass50pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hlt1AK8PFJetsSDMass50pt200eta2p4 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 200.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.4 ),
+    MinMass = cms.double( 50.0 ),
+    inputTag = cms.InputTag( "hltAK8PFjetsSD" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+process.hltPreAK8PFHT800SDMass50pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT850SDMass50pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT900SDMass50pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFHT950SDMass50pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
 )
 process.hltPreAK8PFHT800TrimMass50pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
@@ -5747,15 +6367,6 @@ process.hlt4JetHt750 = cms.EDFilter( "HLTHtMhtFilter",
     htLabels = cms.VInputTag( 'hltHtMht4Jet' ),
     minHt = cms.vdouble( 750.0 )
 )
-process.hltAK8PFHT850pt200 = cms.EDFilter( "HLTHtMhtFilter",
-    saveTags = cms.bool( True ),
-    mhtLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
-    meffSlope = cms.vdouble( 1.0 ),
-    minMeff = cms.vdouble( 0.0 ),
-    minMht = cms.vdouble( 0.0 ),
-    htLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
-    minHt = cms.vdouble( 850.0 )
-)
 process.hltAK8Ht800 = cms.EDFilter( "HLTHtMhtFilter",
     saveTags = cms.bool( True ),
     mhtLabels = cms.VInputTag( 'hltAK8HtMht' ),
@@ -5764,15 +6375,6 @@ process.hltAK8Ht800 = cms.EDFilter( "HLTHtMhtFilter",
     minMht = cms.vdouble( 0.0 ),
     htLabels = cms.VInputTag( 'hltAK8HtMht' ),
     minHt = cms.vdouble( 800.0 )
-)
-process.hltAK8PFHT900pt200 = cms.EDFilter( "HLTHtMhtFilter",
-    saveTags = cms.bool( True ),
-    mhtLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
-    meffSlope = cms.vdouble( 1.0 ),
-    minMeff = cms.vdouble( 0.0 ),
-    minMht = cms.vdouble( 0.0 ),
-    htLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
-    minHt = cms.vdouble( 900.0 )
 )
 process.hltPreAK8PFHT950TrimMass50pt200eta2p4 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
@@ -5786,15 +6388,6 @@ process.hltAK8Ht850 = cms.EDFilter( "HLTHtMhtFilter",
     minMht = cms.vdouble( 0.0 ),
     htLabels = cms.VInputTag( 'hltAK8HtMht' ),
     minHt = cms.vdouble( 850.0 )
-)
-process.hltAK8PFHT950pt200 = cms.EDFilter( "HLTHtMhtFilter",
-    saveTags = cms.bool( True ),
-    mhtLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
-    meffSlope = cms.vdouble( 1.0 ),
-    minMeff = cms.vdouble( 0.0 ),
-    minMht = cms.vdouble( 0.0 ),
-    htLabels = cms.VInputTag( 'hltAK8PFHTpt200' ),
-    minHt = cms.vdouble( 950.0 )
 )
 process.hltPreAK8PFHT800TrimMass40pt150 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
@@ -7067,6 +7660,24 @@ process.hltAK8PFJet200TrimModMass30 = cms.EDFilter( "HLT1PFJet",
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
 )
+process.hltPreAK8PFJet360SDMass00BTagCSVp20 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.hltPreAK8PFJet360SDMass00BTagCSVwithMatchingp20 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+process.HLTAK8CalojetWithAK4BtagCSVp20WithMatching = cms.EDFilter( "HLTPFJetTagWithMatching",
+    saveTags = cms.bool( True ),
+    deltaR = cms.double( 0.4 ),
+    MinJets = cms.int32( 1 ),
+    JetTags = cms.InputTag( "hltCombinedSecondaryVertexBJetTagsCalo" ),
+    TriggerType = cms.int32( 86 ),
+    Jets = cms.InputTag( "hltAK8SingleCaloJet260eta2p4" ),
+    MinTag = cms.double( 0.35 ),
+    MaxTag = cms.double( 999999.0 )
+)
 process.hltPreAK8DiPFJet300200TrimMass30eta2p4BTagCSVp20 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
@@ -7567,7 +8178,42 @@ process.HLT_PFHT975_jet30eta2p4_v1 = cms.Path( process.HLTBeginSequence + proces
 process.HLT_PFHT1000_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT160IorHTT200IorHTT220IorHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPrePFHT1000 + process.HLTAK4CaloJetsSequence + process.hltHtMhtJet30 + process.hltHT850Jet30 + process.HLTAK4PFJetsSequence + process.hltPFHTJet30 + process.hltPFHT1000Jet30 + process.HLTEndSequence )
 process.HLT_PFHT1000_jet30eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT160IorHTT200IorHTT220IorHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPrePFHT1000jet30eta2p4 + process.HLTAK4CaloJetsSequence + process.hltHtMhtJet30 + process.hltHT850Jet30 + process.HLTAK4PFJetsSequence + process.hltPFHTJet30eta2p4 + process.hltPFHT1000Jet30eta2p4 + process.HLTEndSequence )
 process.HLT_AK8PFJet360_TrimMass30_v7 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360TrimMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8TrimModJets + process.hltAK8SinglePFJet360TrimModMass30 + process.HLTEndSequence )
-process.HLT_AK8PFJet360_SDMass10_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass10 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8SDJets + process.hltAK8SinglePFJet360SDMass10 + process.HLTEndSequence )
+process.HLT_AK8PFJet360_SDMass00_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass00 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet360SDMass00 + process.HLTEndSequence )
+process.HLT_AK8PFJet360_SDMass10_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass10 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet360SDMass10 + process.HLTEndSequence )
+process.HLT_AK8PFJet360_SDMass20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet360SDMass20 + process.HLTEndSequence )
+process.HLT_AK8PFJet360_SDMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet360SDMass30 + process.HLTEndSequence )
+process.HLT_AK8PFJet360_SDMass40_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass40 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet360SDMass40 + process.HLTEndSequence )
+process.HLT_AK8PFJet360_SDMass50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass50 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet360SDMass50 + process.HLTEndSequence )
+process.HLT_AK8PFJet340_SDMass00_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet340SDMass00 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet340SDMass00 + process.HLTEndSequence )
+process.HLT_AK8PFJet340_SDMass10_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet340SDMass10 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet340SDMass10 + process.HLTEndSequence )
+process.HLT_AK8PFJet340_SDMass20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet340SDMass20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet340SDMass20 + process.HLTEndSequence )
+process.HLT_AK8PFJet340_SDMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet340SDMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet340SDMass30 + process.HLTEndSequence )
+process.HLT_AK8PFJet340_SDMass40_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet340SDMass40 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet340SDMass40 + process.HLTEndSequence )
+process.HLT_AK8PFJet340_SDMass50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet340SDMass50 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet340SDMass50 + process.HLTEndSequence )
+process.HLT_AK8PFJet320_SDMass00_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet320SDMass00 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet320SDMass00 + process.HLTEndSequence )
+process.HLT_AK8PFJet320_SDMass10_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet320SDMass10 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet320SDMass10 + process.HLTEndSequence )
+process.HLT_AK8PFJet320_SDMass20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet320SDMass20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet320SDMass20 + process.HLTEndSequence )
+process.HLT_AK8PFJet320_SDMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet320SDMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet320SDMass30 + process.HLTEndSequence )
+process.HLT_AK8PFJet320_SDMass40_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet320SDMass40 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet320SDMass40 + process.HLTEndSequence )
+process.HLT_AK8PFJet320_SDMass50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet320SDMass50 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet320SDMass50 + process.HLTEndSequence )
+process.HLT_AK8PFJet300_SDMass00_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet300SDMass00 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet300SDMass00 + process.HLTEndSequence )
+process.HLT_AK8PFJet300_SDMass10_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet300SDMass10 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet300SDMass10 + process.HLTEndSequence )
+process.HLT_AK8PFJet300_SDMass20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet300SDMass20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet300SDMass20 + process.HLTEndSequence )
+process.HLT_AK8PFJet300_SDMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet300SDMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet300SDMass30 + process.HLTEndSequence )
+process.HLT_AK8PFJet300_SDMass40_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet300SDMass40 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet300SDMass40 + process.HLTEndSequence )
+process.HLT_AK8PFJet300_SDMass50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet300SDMass50 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet300SDMass50 + process.HLTEndSequence )
+process.HLT_AK8PFJet380_SDMass00_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet380SDMass00 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet380SDMass00 + process.HLTEndSequence )
+process.HLT_AK8PFJet380_SDMass10_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet380SDMass10 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet380SDMass10 + process.HLTEndSequence )
+process.HLT_AK8PFJet380_SDMass20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet380SDMass20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet380SDMass20 + process.HLTEndSequence )
+process.HLT_AK8PFJet380_SDMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet380SDMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet380SDMass30 + process.HLTEndSequence )
+process.HLT_AK8PFJet380_SDMass40_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet380SDMass40 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet380SDMass40 + process.HLTEndSequence )
+process.HLT_AK8PFJet380_SDMass50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet380SDMass50 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet380SDMass50 + process.HLTEndSequence )
+process.HLT_AK8PFJet400_SDMass00_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet400SDMass00 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet400SDMass00 + process.HLTEndSequence )
+process.HLT_AK8PFJet400_SDMass10_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet400SDMass10 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet400SDMass10 + process.HLTEndSequence )
+process.HLT_AK8PFJet400_SDMass20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet400SDMass20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet400SDMass20 + process.HLTEndSequence )
+process.HLT_AK8PFJet400_SDMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet400SDMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet400SDMass30 + process.HLTEndSequence )
+process.HLT_AK8PFJet400_SDMass40_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet400SDMass40 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet400SDMass40 + process.HLTEndSequence )
+process.HLT_AK8PFJet400_SDMass50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet400SDMass50 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet240eta2p4 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets240eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet400SDMass50 + process.HLTEndSequence )
 process.HLT_AK8PFJet380_TrimMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet380TrimMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet280 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets280 + process.hltAK8TrimModJets + process.hltAK8SinglePFJet380TrimModMass30 + process.HLTEndSequence )
 process.HLT_AK8PFJet400_TrimMass30_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet400TrimMass30 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet300 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets300 + process.hltAK8TrimModJets + process.hltAK8SinglePFJet400TrimModMass30 + process.HLTEndSequence )
 process.HLT_AK8PFJet400_TrimMass20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet400TrimMass20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet300 + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets300 + process.hltAK8TrimModJets + process.hltAK8SinglePFJet400TrimModMass20 + process.HLTEndSequence )
@@ -7599,7 +8245,36 @@ process.HLT_AK8PFHT800_TrimMass50pt150_v1 = cms.Path( process.HLTBeginSequence +
 process.HLT_AK8PFHT800_TrimMass50pt175_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800TrimMass50pt175 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht700 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt175 + process.hltAK8PFJetsTrimR0p1PT0p03 + process.hlt1AK8PFJetsTrimR0p1PT0p03Mass50pt175 + process.hltAK8PFHT800pt175 + process.HLTEndSequence )
 process.HLT_AK8PFHT800_TrimMass50pt200_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800TrimMass50pt200 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht700 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFJetsTrimR0p1PT0p03 + process.hlt1AK8PFJetsTrimR0p1PT0p03Mass50pt200 + process.hltAK8PFHT800pt200 + process.HLTEndSequence )
 process.HLT_AK8PFHT750_TrimMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT750TrimMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFJetsTrimR0p1PT0p03 + process.hlt1AK8PFJetsTrimR0p1PT0p03Mass50pt200eta2p4 + process.hltAK8PFHT750pt200 + process.HLTEndSequence )
-process.HLT_AK8PFHT750_SDMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT750SDMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFJetsSD + process.hlt1AK8PFJetsSDMass10pt200eta2p4 + process.hltAK8PFHT750pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT750_SDMass10pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT750SDMass10pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass10pt200eta2p4 + process.hltAK8PFHT750pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT800_SDMass10pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800SDMass10pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass10pt200eta2p4 + process.hltAK8PFHT800pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT850_SDMass10pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT850SDMass10pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass10pt200eta2p4 + process.hltAK8PFHT850pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT900_SDMass10pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT900SDMass10pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass10pt200eta2p4 + process.hltAK8PFHT900pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT950_SDMass10pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT950SDMass10pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass10pt200eta2p4 + process.hltAK8PFHT950pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT750_SDMass00pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT750SDMass00pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass00pt200eta2p4 + process.hltAK8PFHT750pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT800_SDMass00pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800SDMass00pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass00pt200eta2p4 + process.hltAK8PFHT800pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT850_SDMass00pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT850SDMass00pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass00pt200eta2p4 + process.hltAK8PFHT850pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT900_SDMass00pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT900SDMass00pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass00pt200eta2p4 + process.hltAK8PFHT900pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT950_SDMass00pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT950SDMass00pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass00pt200eta2p4 + process.hltAK8PFHT950pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT750_SDMass20pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT750SDMass20pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass20pt200eta2p4 + process.hltAK8PFHT750pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT800_SDMass20pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800SDMass20pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass20pt200eta2p4 + process.hltAK8PFHT800pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT850_SDMass20pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT850SDMass20pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass20pt200eta2p4 + process.hltAK8PFHT850pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT900_SDMass20pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT900SDMass20pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass20pt200eta2p4 + process.hltAK8PFHT900pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT950_SDMass20pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT950SDMass20pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass20pt200eta2p4 + process.hltAK8PFHT950pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT750_SDMass30pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT750SDMass30pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass30pt200eta2p4 + process.hltAK8PFHT750pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT800_SDMass30pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800SDMass30pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass30pt200eta2p4 + process.hltAK8PFHT800pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT850_SDMass30pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT850SDMass30pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass30pt200eta2p4 + process.hltAK8PFHT850pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT900_SDMass30pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT900SDMass30pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass30pt200eta2p4 + process.hltAK8PFHT900pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT950_SDMass30pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT950SDMass30pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass30pt200eta2p4 + process.hltAK8PFHT950pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT750_SDMass40pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT750SDMass40pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass40pt200eta2p4 + process.hltAK8PFHT750pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT800_SDMass40pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800SDMass40pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass40pt200eta2p4 + process.hltAK8PFHT800pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT850_SDMass40pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT850SDMass40pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass40pt200eta2p4 + process.hltAK8PFHT850pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT900_SDMass40pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT900SDMass40pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass40pt200eta2p4 + process.hltAK8PFHT900pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT950_SDMass40pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT950SDMass40pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass40pt200eta2p4 + process.hltAK8PFHT950pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT750_SDMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT750SDMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass50pt200eta2p4 + process.hltAK8PFHT750pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT800_SDMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800SDMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass50pt200eta2p4 + process.hltAK8PFHT800pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT850_SDMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT850SDMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass50pt200eta2p4 + process.hltAK8PFHT850pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT900_SDMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT900SDMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass50pt200eta2p4 + process.hltAK8PFHT900pt200 + process.HLTEndSequence )
+process.HLT_AK8PFHT950_SDMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT950SDMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFjetsSD + process.hlt1AK8PFJetsSDMass50pt200eta2p4 + process.hltAK8PFHT950pt200 + process.HLTEndSequence )
 process.HLT_AK8PFHT800_TrimMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT800TrimMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht650 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFJetsTrimR0p1PT0p03 + process.hlt1AK8PFJetsTrimR0p1PT0p03Mass50pt200eta2p4 + process.hltAK8PFHT800pt200 + process.HLTEndSequence )
 process.HLT_AK8PFHT850_TrimMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT900TrimMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hlt4JetHt750 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFJetsTrimR0p1PT0p03 + process.hlt1AK8PFJetsTrimR0p1PT0p03Mass50pt200eta2p4 + process.hltAK8PFHT850pt200 + process.HLTEndSequence )
 process.HLT_AK8PFHT900_TrimMass50pt200eta2p4_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT900TrimMass50pt200eta2p4 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht800 + process.HLTAK8PFJetsSequence + process.hltAK8PFHTpt200 + process.hltAK8PFJetsTrimR0p1PT0p03 + process.hlt1AK8PFJetsTrimR0p1PT0p03Mass50pt200eta2p4 + process.hltAK8PFHT900pt200 + process.HLTEndSequence )
@@ -7612,6 +8287,8 @@ process.HLT_AK8PFHT900_TrimMass50_v1 = cms.Path( process.HLTBeginSequence + proc
 process.HLT_AK8PFHT950_TrimMass50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT950TrimMass50 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht850 + process.HLTAK8PFJetsSequence + process.hltAK8PFHT + process.hltAK8PFJetsTrimR0p1PT0p03 + process.hlt1AK8PFJetsTrimR0p1PT0p03Mass50 + process.hltAK8PFHT950 + process.HLTEndSequence )
 process.HLT_AK8PFHT1000_TrimMass50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPreAK8PFHT1000TrimMass50 + process.HLTAK8CaloJetsSequence + process.hltAK8HtMht + process.hltAK8Ht900 + process.HLTAK8PFJetsSequence + process.hltAK8PFHT + process.hltAK8PFJetsTrimR0p1PT0p03 + process.hlt1AK8PFJetsTrimR0p1PT0p03Mass50 + process.hltAK8PFHT950 + process.hltAK8PFHT1000 + process.HLTEndSequence )
 process.HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8DiPFJet300200TrimMass30BTagCSVp20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet280 + process.HLTAK4CaloJetsSequence + process.HLTFastPrimaryVertexSequence + process.hltFastPVPixelVertexSelector + process.HLTBtagCSVSequenceL3 + process.hltBTagCaloCSVp20Single + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets280 + process.hltAK8TrimModJets + process.hltAK8DiPFJet200TrimMod + process.hltAK8SinglePFJet300TrimMod + process.hltAK8PFJet200TrimModMass30 + process.HLTEndSequence )
+process.HLT_AK8PFJet360_SDMass00_BTagCSV_p20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass00BTagCSVp20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260eta2p4 + process.HLTAK4CaloJetsSequence + process.HLTFastPrimaryVertexSequence + process.hltFastPVPixelVertexSelector + process.HLTBtagCSVSequenceL3 + process.hltBTagCaloCSVp20Single + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet360SDMass00 + process.HLTEndSequence )
+process.HLT_AK8PFJet360_SDMass00_BTagCSV_withMatching_p20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8PFJet360SDMass00BTagCSVwithMatchingp20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260eta2p4 + process.HLTAK4CaloJetsSequence + process.HLTFastPrimaryVertexSequence + process.hltFastPVPixelVertexSelector + process.HLTBtagCSVSequenceL3 + process.HLTAK8CalojetWithAK4BtagCSVp20WithMatching + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260eta2p4 + process.hltAK8PFjetsSD + process.hltAK8SinglePFJet360SDMass00 + process.HLTEndSequence )
 process.HLT_AK8DiPFJet300_200_TrimMass30_eta2p4_BTagCSV_p20_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8DiPFJet300200TrimMass30eta2p4BTagCSVp20 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet280 + process.HLTAK4CaloJetsSequence + process.HLTFastPrimaryVertexSequence + process.hltFastPVPixelVertexSelector + process.HLTBtagCSVSequenceL3 + process.hltBTagCaloCSVp20Single + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets280 + process.hltAK8TrimModJets + process.hltAK8DiPFJet200TrimModeta2p4 + process.hltAK8SinglePFJet300TrimModeta2p4 + process.hltAK8PFJet200TrimModMass30eta2p4 + process.HLTEndSequence )
 process.HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8DiPFJet280200TrimMass30BTagCSVp087 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK4CaloJetsSequence + process.HLTFastPrimaryVertexSequence + process.hltFastPVPixelVertexSelector + process.HLTBtagCSVSequenceL3 + process.hltBTagCaloCSVp087Single + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8TrimModJets + process.hltAK8DiPFJet200TrimMod + process.hltAK8SinglePFJet280TrimMod + process.hltAK8PFJet200TrimModMass30 + process.HLTEndSequence )
 process.HLT_AK8DiPFJet280_200_TrimMass30_eta2p4_BTagCSV_p087_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sSingleJet180IorSingleJet200 + process.hltPreAK8DiPFJet280200TrimMass30eta2p4BTagCSVp087 + process.HLTAK8CaloJetsSequence + process.hltAK8SingleCaloJet260 + process.HLTAK4CaloJetsSequence + process.HLTFastPrimaryVertexSequence + process.hltFastPVPixelVertexSelector + process.HLTBtagCSVSequenceL3 + process.hltBTagCaloCSVp087Single + process.HLTAK8PFJetsSequence + process.hltAK8PFJetsCorrectedMatchedToCaloJets260 + process.hltAK8TrimModJets + process.hltAK8DiPFJet200TrimModeta2p4 + process.hltAK8SinglePFJet280TrimModeta2p4 + process.hltAK8PFJet200TrimModMass30eta2p4 + process.HLTEndSequence )
@@ -7640,7 +8317,7 @@ process.HLT_PFHT900_4JetPt50_v1 = cms.Path( process.HLTBeginSequence + process.h
 process.HLT_PFHT950_4JetPt50_v1 = cms.Path( process.HLTBeginSequence + process.hltL1sV0HTT160IorHTT200IorHTT220IorHTT240IorHTT255IorHTT270IorHTT280IorHTT300IorHTT320 + process.hltPrePFHT9504JetPt50 + process.HLTAK4CaloJetsSequence + process.hltHtMht4Jet + process.hlt4JetHt750 + process.HLTAK4PFJetsSequence + process.hltPFHT4JetPt50 + process.hltPF4JetPt50HT950 + process.HLTEndSequence )
 
 
-process.HLTSchedule = cms.Schedule( *(process.HLT_PFHT900_v6, process.HLT_PFHT900_jet30eta2p4_v1, process.HLT_PFHT925_jet30eta2p4_v1, process.HLT_PFHT950_v1, process.HLT_PFHT950_jet30eta2p4_v1, process.HLT_PFHT975_jet30eta2p4_v1, process.HLT_PFHT1000_v1, process.HLT_PFHT1000_jet30eta2p4_v1, process.HLT_AK8PFJet360_TrimMass30_v7, process.HLT_AK8PFJet360_SDMass10_v1, process.HLT_AK8PFJet380_TrimMass30_v1, process.HLT_AK8PFJet400_TrimMass30_v1, process.HLT_AK8PFJet400_TrimMass20_v1, process.HLT_AK8PFJet400_TrimMass10_v1, process.HLT_AK8PFJet400_TrimMass40_v1, process.HLT_AK8PFJet400_TrimMass50_v1, process.HLT_AK8PFJet420_TrimMass30_v1, process.HLT_AK8PFJet440_TrimMass30_v1, process.HLT_AK8PFJet460_TrimMass30_v1, process.HLT_AK8PFJet360eta2p4_TrimMass30_v1, process.HLT_AK8PFJet360eta2p4_TrimMass20_v1, process.HLT_AK8PFJet360eta2p4_TrimMass40_v1, process.HLT_AK8PFJet360eta2p4_TrimMass50_v1, process.HLT_AK8PFJet370eta2p4_TrimMass50_v1, process.HLT_AK8PFJet340eta2p4_TrimMass50_v1, process.HLT_AK8PFJet350eta2p4_TrimMass50_v1, process.HLT_AK8PFJet340eta2p4_TrimMass30_v1, process.HLT_AK8PFJet320eta2p4_TrimMass30_v1, process.HLT_AK8PFJet380eta2p4_TrimMass30_v1, process.HLT_AK8PFJet380eta2p4_TrimMass50_v1, process.HLT_AK8PFJet400eta2p4_TrimMass30_v1, process.HLT_AK8PFJet420eta2p4_TrimMass30_v1, process.HLT_AK8PFJet440eta2p4_TrimMass30_v1, process.HLT_AK8PFJet460eta2p4_TrimMass30_v1, process.HLT_AK8PFHT750_TrimMass50_v1, process.HLT_AK8PFHT800_TrimMass50_v1, process.HLT_AK8PFHT800_TrimMass50eta2p4_v1, process.HLT_AK8PFHT800_TrimMass50pt150_v1, process.HLT_AK8PFHT800_TrimMass50pt175_v1, process.HLT_AK8PFHT800_TrimMass50pt200_v1, process.HLT_AK8PFHT750_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT750_SDMass50pt200eta2p4_v1, process.HLT_AK8PFHT800_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT850_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT900_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT950_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT800_TrimMass40pt150_v1, process.HLT_AK8PFHT800_TrimMass30pt150_v1, process.HLT_AK8PFHT800_TrimMass20pt150_v1, process.HLT_AK8PFHT850_TrimMass50_v1, process.HLT_AK8PFHT900_TrimMass50_v1, process.HLT_AK8PFHT950_TrimMass50_v1, process.HLT_AK8PFHT1000_TrimMass50_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p20_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_eta2p4_BTagCSV_p20_v1, process.HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_v1, process.HLT_AK8DiPFJet280_200_TrimMass30_eta2p4_BTagCSV_p087_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p087_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet300_220_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet300_240_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet320_200_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet340_200_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet300_200_TrimMass40_eta2p4_v1, process.HLT_AK8DiPFJet300_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet320_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet340_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet280_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet260_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet300_200_BothTrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet280_200_BothTrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet260_200_BothTrimMass30_eta2p4_v1, process.HLT_PFHT750_4JetPt70_v2, process.HLT_PFHT750_4JetPt70eta2p4_v1, process.HLT_PFHT750_4JetPt60eta2p4_v1, process.HLT_PFHT800_4JetPt50_v2, process.HLT_PFHT850_4JetPt50_v1, process.HLT_PFHT900_4JetPt50_v1, process.HLT_PFHT950_4JetPt50_v1 ))
+process.HLTSchedule = cms.Schedule( *(process.HLT_PFHT900_v6, process.HLT_PFHT900_jet30eta2p4_v1, process.HLT_PFHT925_jet30eta2p4_v1, process.HLT_PFHT950_v1, process.HLT_PFHT950_jet30eta2p4_v1, process.HLT_PFHT975_jet30eta2p4_v1, process.HLT_PFHT1000_v1, process.HLT_PFHT1000_jet30eta2p4_v1, process.HLT_AK8PFJet360_TrimMass30_v7, process.HLT_AK8PFJet360_SDMass00_v1, process.HLT_AK8PFJet360_SDMass10_v1, process.HLT_AK8PFJet360_SDMass20_v1, process.HLT_AK8PFJet360_SDMass30_v1, process.HLT_AK8PFJet360_SDMass40_v1, process.HLT_AK8PFJet360_SDMass50_v1, process.HLT_AK8PFJet340_SDMass00_v1, process.HLT_AK8PFJet340_SDMass10_v1, process.HLT_AK8PFJet340_SDMass20_v1, process.HLT_AK8PFJet340_SDMass30_v1, process.HLT_AK8PFJet340_SDMass40_v1, process.HLT_AK8PFJet340_SDMass50_v1, process.HLT_AK8PFJet320_SDMass00_v1, process.HLT_AK8PFJet320_SDMass10_v1, process.HLT_AK8PFJet320_SDMass20_v1, process.HLT_AK8PFJet320_SDMass30_v1, process.HLT_AK8PFJet320_SDMass40_v1, process.HLT_AK8PFJet320_SDMass50_v1, process.HLT_AK8PFJet300_SDMass00_v1, process.HLT_AK8PFJet300_SDMass10_v1, process.HLT_AK8PFJet300_SDMass20_v1, process.HLT_AK8PFJet300_SDMass30_v1, process.HLT_AK8PFJet300_SDMass40_v1, process.HLT_AK8PFJet300_SDMass50_v1, process.HLT_AK8PFJet380_SDMass00_v1, process.HLT_AK8PFJet380_SDMass10_v1, process.HLT_AK8PFJet380_SDMass20_v1, process.HLT_AK8PFJet380_SDMass30_v1, process.HLT_AK8PFJet380_SDMass40_v1, process.HLT_AK8PFJet380_SDMass50_v1, process.HLT_AK8PFJet400_SDMass00_v1, process.HLT_AK8PFJet400_SDMass10_v1, process.HLT_AK8PFJet400_SDMass20_v1, process.HLT_AK8PFJet400_SDMass30_v1, process.HLT_AK8PFJet400_SDMass40_v1, process.HLT_AK8PFJet400_SDMass50_v1, process.HLT_AK8PFJet380_TrimMass30_v1, process.HLT_AK8PFJet400_TrimMass30_v1, process.HLT_AK8PFJet400_TrimMass20_v1, process.HLT_AK8PFJet400_TrimMass10_v1, process.HLT_AK8PFJet400_TrimMass40_v1, process.HLT_AK8PFJet400_TrimMass50_v1, process.HLT_AK8PFJet420_TrimMass30_v1, process.HLT_AK8PFJet440_TrimMass30_v1, process.HLT_AK8PFJet460_TrimMass30_v1, process.HLT_AK8PFJet360eta2p4_TrimMass30_v1, process.HLT_AK8PFJet360eta2p4_TrimMass20_v1, process.HLT_AK8PFJet360eta2p4_TrimMass40_v1, process.HLT_AK8PFJet360eta2p4_TrimMass50_v1, process.HLT_AK8PFJet370eta2p4_TrimMass50_v1, process.HLT_AK8PFJet340eta2p4_TrimMass50_v1, process.HLT_AK8PFJet350eta2p4_TrimMass50_v1, process.HLT_AK8PFJet340eta2p4_TrimMass30_v1, process.HLT_AK8PFJet320eta2p4_TrimMass30_v1, process.HLT_AK8PFJet380eta2p4_TrimMass30_v1, process.HLT_AK8PFJet380eta2p4_TrimMass50_v1, process.HLT_AK8PFJet400eta2p4_TrimMass30_v1, process.HLT_AK8PFJet420eta2p4_TrimMass30_v1, process.HLT_AK8PFJet440eta2p4_TrimMass30_v1, process.HLT_AK8PFJet460eta2p4_TrimMass30_v1, process.HLT_AK8PFHT750_TrimMass50_v1, process.HLT_AK8PFHT800_TrimMass50_v1, process.HLT_AK8PFHT800_TrimMass50eta2p4_v1, process.HLT_AK8PFHT800_TrimMass50pt150_v1, process.HLT_AK8PFHT800_TrimMass50pt175_v1, process.HLT_AK8PFHT800_TrimMass50pt200_v1, process.HLT_AK8PFHT750_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT750_SDMass10pt200eta2p4_v1, process.HLT_AK8PFHT800_SDMass10pt200eta2p4_v1, process.HLT_AK8PFHT850_SDMass10pt200eta2p4_v1, process.HLT_AK8PFHT900_SDMass10pt200eta2p4_v1, process.HLT_AK8PFHT950_SDMass10pt200eta2p4_v1, process.HLT_AK8PFHT750_SDMass00pt200eta2p4_v1, process.HLT_AK8PFHT800_SDMass00pt200eta2p4_v1, process.HLT_AK8PFHT850_SDMass00pt200eta2p4_v1, process.HLT_AK8PFHT900_SDMass00pt200eta2p4_v1, process.HLT_AK8PFHT950_SDMass00pt200eta2p4_v1, process.HLT_AK8PFHT750_SDMass20pt200eta2p4_v1, process.HLT_AK8PFHT800_SDMass20pt200eta2p4_v1, process.HLT_AK8PFHT850_SDMass20pt200eta2p4_v1, process.HLT_AK8PFHT900_SDMass20pt200eta2p4_v1, process.HLT_AK8PFHT950_SDMass20pt200eta2p4_v1, process.HLT_AK8PFHT750_SDMass30pt200eta2p4_v1, process.HLT_AK8PFHT800_SDMass30pt200eta2p4_v1, process.HLT_AK8PFHT850_SDMass30pt200eta2p4_v1, process.HLT_AK8PFHT900_SDMass30pt200eta2p4_v1, process.HLT_AK8PFHT950_SDMass30pt200eta2p4_v1, process.HLT_AK8PFHT750_SDMass40pt200eta2p4_v1, process.HLT_AK8PFHT800_SDMass40pt200eta2p4_v1, process.HLT_AK8PFHT850_SDMass40pt200eta2p4_v1, process.HLT_AK8PFHT900_SDMass40pt200eta2p4_v1, process.HLT_AK8PFHT950_SDMass40pt200eta2p4_v1, process.HLT_AK8PFHT750_SDMass50pt200eta2p4_v1, process.HLT_AK8PFHT800_SDMass50pt200eta2p4_v1, process.HLT_AK8PFHT850_SDMass50pt200eta2p4_v1, process.HLT_AK8PFHT900_SDMass50pt200eta2p4_v1, process.HLT_AK8PFHT950_SDMass50pt200eta2p4_v1, process.HLT_AK8PFHT800_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT850_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT900_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT950_TrimMass50pt200eta2p4_v1, process.HLT_AK8PFHT800_TrimMass40pt150_v1, process.HLT_AK8PFHT800_TrimMass30pt150_v1, process.HLT_AK8PFHT800_TrimMass20pt150_v1, process.HLT_AK8PFHT850_TrimMass50_v1, process.HLT_AK8PFHT900_TrimMass50_v1, process.HLT_AK8PFHT950_TrimMass50_v1, process.HLT_AK8PFHT1000_TrimMass50_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p20_v1, process.HLT_AK8PFJet360_SDMass00_BTagCSV_p20_v1, process.HLT_AK8PFJet360_SDMass00_BTagCSV_withMatching_p20_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_eta2p4_BTagCSV_p20_v1, process.HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p087_v1, process.HLT_AK8DiPFJet280_200_TrimMass30_eta2p4_BTagCSV_p087_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_BTagCSV_p087_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_v1, process.HLT_AK8DiPFJet300_200_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet300_220_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet300_240_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet320_200_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet340_200_TrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet300_200_TrimMass40_eta2p4_v1, process.HLT_AK8DiPFJet300_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet320_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet340_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet280_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet260_200_TrimMass50_eta2p4_v1, process.HLT_AK8DiPFJet300_200_BothTrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet280_200_BothTrimMass30_eta2p4_v1, process.HLT_AK8DiPFJet260_200_BothTrimMass30_eta2p4_v1, process.HLT_PFHT750_4JetPt70_v2, process.HLT_PFHT750_4JetPt70eta2p4_v1, process.HLT_PFHT750_4JetPt60eta2p4_v1, process.HLT_PFHT800_4JetPt50_v2, process.HLT_PFHT850_4JetPt50_v1, process.HLT_PFHT900_4JetPt50_v1, process.HLT_PFHT950_4JetPt50_v1 ))
 
 
 process.source = cms.Source( "PoolSource",
@@ -7690,15 +8367,15 @@ if 'hltDQML1SeedLogicScalers' in process.__dict__:
 
 # limit the number of events to be processed
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32( 10 )
+    input = cms.untracked.int32( 10000 )
 )
 
 # enable TrigReport, TimeReport and MultiThreading
 process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool( True ),
-    numberOfThreads = cms.untracked.uint32( 4 ),
-    numberOfStreams = cms.untracked.uint32( 0 ),
-    sizeOfStackForThreadsInKB = cms.untracked.uint32( 10*1024 )
+#    numberOfThreads = cms.untracked.uint32( 4 ),
+#    numberOfStreams = cms.untracked.uint32( 0 ),
+#    sizeOfStackForThreadsInKB = cms.untracked.uint32( 10*1024 )
 )
 
 # override the GlobalTag, connection string and pfnPrefix
@@ -7713,9 +8390,8 @@ if 'MessageLogger' in process.__dict__:
     process.MessageLogger.categories.append('L1TGlobalSummary')
     process.MessageLogger.categories.append('HLTrigReport')
     process.MessageLogger.categories.append('FastReport')
-    process.MessageLogger.suppressInfo = cms.untracked.vstring('DTUnpackingModule:unpackDT', 'DTUnpackingModule', 'unpackDT')
-    process.MessageLogger.suppressWarning = cms.untracked.vstring('DTUnpackingModule:unpackDT', 'DTUnpackingModule', 'unpackDT')
-
+    process.MessageLogger.suppressInfo = cms.untracked.vstring('DTUnpackingModule:unpackDT', 'DTUnpackingModule', 'unpackDT', 'DTUnpackingModule:hltMuonDTDigis', 'DTUnpackingModule', 'hltMuonDTDigis')
+    process.MessageLogger.suppressWarning = cms.untracked.vstring('DTUnpackingModule:unpackDT', 'DTUnpackingModule', 'unpackDT', 'DTUnpackingModule:hltMuonDTDigis', 'DTUnpackingModule', 'hltMuonDTDigis')
 
 # load the DQMStore and DQMRootOutputModule
 process.load( "DQMServices.Core.DQMStore_cfi" )
@@ -7736,9 +8412,21 @@ _customInfo['globalTags'][False] = "auto:run2_mc_GRun"
 _customInfo['inputFiles']={}
 _customInfo['inputFiles'][True]  = "file:RelVal_Raw_GRun_DATA.root"
 _customInfo['inputFiles'][False] = "file:RelVal_Raw_GRun_MC.root"
-_customInfo['maxEvents' ]=  10
+_customInfo['maxEvents' ]=  20000
 _customInfo['globalTag' ]= "auto:run2_hlt_GRun"
-_customInfo['inputFile' ]=  ['/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/933/00000/081DEB7C-CE9D-E611-87EB-02163E014511.root']
+_customInfo['inputFile' ]=  ['/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/933/00000/081DEB7C-CE9D-E611-87EB-02163E014511.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/0AAE9ADA-DD9D-E611-AD09-02163E014202.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/6C14C7CC-E29D-E611-92F1-02163E0136D6.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/8662B61C-E19D-E611-9DF6-02163E014749.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/933/00000/DE38BBA4-D09D-E611-ACE5-02163E014403.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/70BBD3A5-F29D-E611-8B70-FA163EAFAA52.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/50F7BC2E-DD9D-E611-9259-02163E0136BD.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/50665AF3-E39D-E611-A238-02163E0142AB.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/6AB00905-E29D-E611-8CB6-02163E0143A7.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/267D2B14-E29D-E611-BF84-02163E014196.root',
+		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/08290D7A-F39D-E611-B91C-02163E01393D.root',
+
+		]
 _customInfo['realData'  ]=  True
 from HLTrigger.Configuration.customizeHLTforALL import customizeHLTforAll
 process = customizeHLTforAll(process,"GRun",_customInfo)
