@@ -8425,7 +8425,6 @@ _customInfo['inputFile' ]=  ['/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/93
 		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/6AB00905-E29D-E611-8CB6-02163E0143A7.root',
 		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/267D2B14-E29D-E611-BF84-02163E014196.root',
 		'/store/data/Run2016H/HLTPhysics0/RAW/v1/000/283/934/00000/08290D7A-F39D-E611-B91C-02163E01393D.root',
-
 		]
 _customInfo['realData'  ]=  True
 from HLTrigger.Configuration.customizeHLTforALL import customizeHLTforAll
