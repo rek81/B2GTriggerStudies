@@ -15,10 +15,11 @@ config.General.requestName = ''
 config.General.workArea = 'crab_projects'
 
 config.JobType.pluginName = 'Analysis'
-#config.JobType.psetName = 'hlt_B2GTriggers_MC.py'  
-config.JobType.psetName = 'hlt_B2GTriggers_2017Data.py'
+config.JobType.psetName = 'hlt_B2GTriggers_83XMC.py'  
+#config.JobType.psetName = 'hlt_B2GTriggers_2017Data_v2.py'
 config.JobType.allowUndistributedCMSSW = True
-#config.JobType.inputFiles = [ '/afs/cern.ch/user/s/sdonato/AFSwork/public/genJetPtHatPU/0.txt' ]
+#supportFiles = glob.glob('/afs/cern.ch/user/s/sdonato/AFSwork/public/genJetPtHadPU_RunIISummer15GS_ak4GenJetsNoNu/*txt')
+#config.JobType.inputFiles = supportFiles
 config.General.transferLogs = True
 
 config.Data.inputDataset = ''
@@ -42,8 +43,15 @@ if __name__ == '__main__':
 	from CRABAPI.RawCommand import crabCommand
 
 	Samples = [ 
-		'/HLTPhysics/Run2017A-v1/RAW',
-		#'/QCD_Pt-15to3000_TuneCUETP8M1_Flat_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v2/GEN-SIM-RAW'
+		#'/HLTPhysics/Run2017A-v1/RAW',
+		'/QCD_Pt_15to30_TuneCUETP8M1_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/GEN-SIM-RAW',
+		'/QCD_Pt_30to50_TuneCUETP8M1_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/GEN-SIM-RAW',
+		'/QCD_Pt_50to80_TuneCUETP8M1_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/GEN-SIM-RAW',
+		#'/QCD_Pt_80to120_TuneCUETP8M1_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/GEN-SIM-RAW',
+		#'/QCD_Pt_120to170_TuneCUETP8M1_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/GEN-SIM-RAW',
+		#'/QCD_Pt_170to300_TuneCUETP8M1_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/GEN-SIM-RAW',
+		#'/QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/GEN-SIM-RAW',
+		#'/QCD_Pt_470to600_TuneCUETP8M1_13TeV_pythia8/PhaseIFall16DR-FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/GEN-SIM-RAW',
 			]
 
 	
@@ -53,9 +61,12 @@ if __name__ == '__main__':
 		#procName = dataset.split('/')[1]+dataset.split('/')[2]+'_'+version
 		procName = dataset.split('/')[1]+'_'+version
 		#config.Data.lumiMask = '/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/Cert_271036-276811_13TeV_PromptReco_Collisions16_JSON.txt'
-		config.Data.lumiMask = '/afs/cern.ch/work/t/tosi/public/STEAM/json/firstCollisions17_v3p1_v3_PS_2e34.json'
-		config.Data.splitting = 'LumiBased'
-		config.Data.unitsPerJob = 1
+		#config.Data.lumiMask = '/afs/cern.ch/work/t/tosi/public/STEAM/json/firstCollisions17_v3p1_v3_PS_2e34.json'
+		config.Data.splitting = ('LumiBased' if 'HLTPhysics' in dataset.split('/')[1] else 'FileBased')
+		config.JobType.outputFiles = ['hltbits.root']
+		config.JobType.maxMemoryMB = 2500
+		config.JobType.numCores = 4
+		config.Data.unitsPerJob = 10
 		#config.Data.runRange = '295612:295614'
 
 		config.General.requestName = procName

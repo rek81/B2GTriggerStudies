@@ -1,18 +1,18 @@
 # Trigger Development
 
 
- * CMSSW Release: 9_0_1
+ * CMSSW Release: 9_2_X
 
 This is just a quick list of recipes.
 
- * For the hlt_B2GTriggers_MC.py:
+ * For the hlt_B2GTriggers_83XMC.py:
 ```
-hltGetConfiguration /users/algomez/B2GTriggers/V24 --full --offline --mc --unprescale --process TEST --globaltag 90X_upgrade2017_TSG_Hcal_V2 --setup /dev/CMSSW_9_0_1/GRun --no-output --max-events 10 --input root://eoscms.cern.ch//eos/cms/store/mc/PhaseIFall16DR/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v2/130000/BE521173-FD10-E711-A3FE-02163E0176C2.root --l1-emulator FullSimHcalTP  > hlt_B2GTriggers_MC.py 
+hltGetConfiguration /users/algomez/B2GTriggers/V41 --full --offline --mc --input  root://eoscms.cern.ch//eos/cms/store/mc/PhaseIFall16DR/QCD_Pt_170to300_TuneCUETP8M1_13TeV_pythia8/GEN-SIM-RAW/FlatPU28to62HcalNZSRAW_90X_upgrade2017_realistic_v6_C1-v1/00000/00756078-A307-E711-B8AC-1866DAEA8178.root --unprescale --process TEST --globaltag  92X_upgrade2017_TSG_For83XSamples_V4 --l1-emulator FullMC --l1 L1Menu_Collisions2017_dev_r5_m4_patch_xml  --setup /dev/CMSSW_9_2_0/GRun --no-output > hlt_B2GTriggers_83XMC.py
 ```
 
- * For the hlt_B2GTriggers_2016Data.py:
+ * For the hlt_B2GTriggers_2016Data_v2.py:
 ```
-hltGetConfiguration /users/algomez/B2GTriggers/V24 --full --offline --data --unprescale --process TEST --globaltag auto:run2_hlt_GRun --setup /dev/CMSSW_9_0_1/GRun --no-output --max-events 10  --l1-emulator FullSimHcalTP  > hlt_B2GTriggers_2016Data.py
+hltGetConfiguration /users/algomez/B2GTriggers/V41 --full --offline --data --unprescale --process TEST --globaltag 92X_dataRun2_HLT_v2 --setup /dev/CMSSW_9_2_0/GRun --no-output > hlt_B2GTriggers_2017Data_v2.py
 ```
 
 
