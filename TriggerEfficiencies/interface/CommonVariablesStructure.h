@@ -57,9 +57,9 @@ inline bool checkTriggerBitsMiniAOD( TriggerNames triggerNames, Handle<TriggerRe
 
   	bool triggerFired = 0;
 	for (unsigned int i = 0, n = triggerBits->size(); i < n; ++i) {
-		//LogWarning("triggerbit") << triggerNames.triggerName(i) << " " <<  triggerBits->accept(i) << " " << triggerPrescales->getPrescaleForIndex(i);
+		//LogWarning("all triggers") << triggerNames.triggerName(i) << " " <<  triggerBits->accept(i) << " " << triggerPrescales->getPrescaleForIndex(i);
 		if (TString(triggerNames.triggerName(i)).Contains(HLTtrigger) && (triggerBits->accept(i))) {
-			if ( baselineTrigger ) triggerFired=1;
+			triggerFired=1;
 			//if ( (triggerPrescales->getPrescaleForIndex(i) == 1) || baselineTrigger ) triggerFired=1;
 			//LogWarning("triggerbit") << triggerNames.triggerName(i) << " " <<  triggerBits->accept(i) << " " << triggerPrescales->getPrescaleForIndex(i) << " " <<  triggerPrescales->getPrescaleForIndex(i) << " " << baselineTrigger << " " << triggerFired ;
 		}
@@ -74,11 +74,12 @@ inline bool checkORListOfTriggerBitsMiniAOD( TriggerNames triggerNames, Handle<T
 	for (size_t t = 0; t < triggerPass.size(); t++) {
 		bool triggerFired = checkTriggerBitsMiniAOD( triggerNames, triggerBits, triggerPrescales, triggerPass[t], baselineTrigger );
 		triggersFired.push_back( triggerFired );
-		//LogWarning("test") << triggerPass[t] << " " << triggerFired;
-		//if ( triggerFired ) LogWarning("test") << triggerPass[t] << " " << triggerFired;
+		//LogWarning("trigger test") << triggerPass[t] << " " << triggerFired;
+		//if ( triggerFired ) LogWarning("trigger fired test") << triggerPass[t] << " " << triggerFired;
 	}
 	
 	bool ORTriggers = any_of(triggersFired.begin(), triggersFired.end(), [](bool v) { return v; }); 
+	triggersFired.clear();
 	
 	return ORTriggers;
 }

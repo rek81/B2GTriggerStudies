@@ -84,8 +84,28 @@ void TriggerValidationAndEfficiencies::analyze(const Event& iEvent, const EventS
 	iEvent.getByToken(jetToken_, jets);
 
 	const TriggerNames &names = iEvent.triggerNames(*triggerBits);
-  	bool ORTriggers = checkORListOfTriggerBitsMiniAOD( names, triggerBits, triggerPrescales, triggerPass_, false );
-  	bool baseTrigger = checkTriggerBitsMiniAOD( names, triggerBits, triggerPrescales, baseTrigger_, true );
+	/*
+	 * I dont understand why this does not work
+  	bool baseTrigger = checkTriggerBitsMiniAOD( names, triggerBits, triggerPrescales, baseTrigger_, false );
+  	bool ORTriggers = checkORListOfTriggerBitsMiniAOD( names, triggerBits, triggerPrescales, triggerPass_, true );
+	//LogWarning("trigger fired") << "Based " << baseTrigger << "OR " << ORTriggers;
+	*/
+
+	bool baseTrigger = 0;
+	bool ORTriggers = 0;
+	vector<bool> triggersFired;
+	for (unsigned int i = 0, n = triggerBits->size(); i < n; ++i) {
+		//LogWarning("all triggers") << triggerNames.triggerName(i) << " " <<  triggerBits->accept(i) << " " << triggerPrescales->getPrescaleForIndex(i);
+		if (TString(names.triggerName(i)).Contains(baseTrigger_) && (triggerBits->accept(i)))  baseTrigger = true;
+		for (size_t t = 0; t < triggerPass_.size(); t++) {
+			if (TString(names.triggerName(i)).Contains(triggerPass_[t]) && (triggerBits->accept(i))) triggersFired.push_back( true );
+			else triggersFired.push_back( false );
+		}
+	}
+	ORTriggers = any_of(triggersFired.begin(), triggersFired.end(), [](bool v) { return v; }); 
+	triggersFired.clear();
+	//LogWarning("trigger fired") << "Based " << baseTrigger << " OR " << ORTriggers;
+	if ( TString(baseTrigger_).Contains("empty") ) baseTrigger = true;
 
 
 	///// TO TEST HLT OBJECTS
@@ -129,6 +149,7 @@ void TriggerValidationAndEfficiencies::analyze(const Event& iEvent, const EventS
 
 			if( jet.pt() < recojetPt_ ) continue;
 			if( TMath::Abs(jet.eta()) > 2.5 ) continue;
+			//LogWarning("jets") << jet.pt();
 			HT += jet.pt();
 
 			if (++k==1){
@@ -149,19 +170,13 @@ void TriggerValidationAndEfficiencies::analyze(const Event& iEvent, const EventS
 			}
 
 		}
+		histos1D_[ "HT" ]->Fill( HT );
 		
 		if ( baseTrigger ) {
 			histos1D_[ "HTDenom" ]->Fill( HT );
-			if ( AK8jets_ ){
-				//histos1D_[ "softDropMassDenom" ]->Fill( jet.userFloat( "ak8PFJetsCHSSoftDropMass" ) );
-			}
-			
 
 			if ( ORTriggers ){
 				histos1D_[ "HTPassing" ]->Fill( HT );
-				if ( AK8jets_ ){
-					//histos1D_[ "softDropMassPassing" ]->Fill( jet.userFloat( "ak8PFJetsCHSSoftDropMass" ) );
-				}
 			}
 		}
 	}
@@ -180,8 +195,8 @@ void TriggerValidationAndEfficiencies::beginJob() {
 	histos1D_[ "HT" ] = fs_->make< TH1D >( "HT", "HT", 100, 0., 2000. );
 
 
-	histos1D_[ "HTDenom" ] = fs_->make< TH1D >( "HTDenom", "HTDenom", 1000, 0., 1000. );
-	histos1D_[ "HTPassing" ] = fs_->make< TH1D >( "HTPassing", "HTPassing", 1000, 0., 1000. );
+	histos1D_[ "HTDenom" ] = fs_->make< TH1D >( "HTDenom", "HTDenom", 2000, 0., 2000. );
+	histos1D_[ "HTPassing" ] = fs_->make< TH1D >( "HTPassing", "HTPassing", 2000, 0., 2000. );
 	histos1D_[ "jet1SoftDropMassDenom" ] = fs_->make< TH1D >( "jet1SoftDropMassDenom", "jet1SoftDropMassDenom", 1000, 0., 1000. );
 	histos1D_[ "jet1SoftDropMassPassing" ] = fs_->make< TH1D >( "jet1SoftDropMassPassing", "jet1SoftDropMassPassing", 1000, 0., 1000. );
 	histos1D_[ "jet1PtDenom" ] = fs_->make< TH1D >( "jet1PtDenom", "jet1PtDenom", 1000, 0., 1000. );

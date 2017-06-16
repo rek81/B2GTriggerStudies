@@ -206,6 +206,9 @@ Int_t DefinePaths(vector<TString> &paths)
   paths.push_back("HLT_AK8PFJet360_SDMass40_v1"); 
   paths.push_back("HLT_AK8PFJet360_SDMass50_v1"); 
   paths.push_back("HLT_AK8PFJet360_TrimMass30_v8"); 
+  paths.push_back("HLT_AK8PFJet360_TrimMass30_AK4CaloBtagCSV_p067_v1"); 
+  paths.push_back("HLT_AK8PFJet380_TrimMass30_AK4CaloBtagCSV_p067_v1"); 
+  paths.push_back("HLT_AK8PFJet380_TrimMass30_AK4PFBtagCSV_p080_v1"); 
   paths.push_back("HLT_AK8PFJet380_SDMass10_v1"); 
   paths.push_back("HLT_AK8PFJet380_SDMass20_v1"); 
   paths.push_back("HLT_AK8PFJet380_SDMass30_v1"); 
@@ -217,7 +220,7 @@ Int_t DefinePaths(vector<TString> &paths)
   paths.push_back("HLT_AK8PFJet400_SDMass30_v1"); 
   paths.push_back("HLT_AK8PFJet400_TrimMass30_v2"); 
   paths.push_back("HLT_AK8PFJet500_v6"); 
-  paths.push_back("HLT_PFHT1050_v7");
+  paths.push_back("HLT_PFHT1050_v7"); 
 
   return 0;
 }
@@ -233,7 +236,7 @@ Int_t DefineChains(vector<TString> &processes, vector<TChain*> &chains)
   //processes.push_back("QCD30");     
   //processes.push_back("QCD50");     
   //processes.push_back("QCD80");     
-  //processes.push_back("QCD120");    
+  processes.push_back("QCD120");    
   processes.push_back("QCD170");    
   processes.push_back("QCD300");    
   processes.push_back("QCD470");    
@@ -270,10 +273,10 @@ Int_t DefineChains(vector<TString> &processes, vector<TChain*> &chains)
   //subdir["QCD50"   ].push_back("B/QCD_Pt_50to80_TuneCUETP8M1_13TeV_pythia8/QCD50/170428_144852/0001/");
   //subdir["QCD50"   ].push_back("B/QCD_Pt_50to80_TuneCUETP8M1_13TeV_pythia8/QCD50/170428_144852/0002/");
   //subdir["QCD80"   ].push_back("B/QCD_Pt_80to120_TuneCUETP8M1_13TeV_pythia8/QCD80/170428_144824/0000/");
-  //subdir["QCD120"  ].push_back("/QCD_Pt_120to170_TuneCUETP8M1_13TeV_pythia8/QCD120/170428_144518/0000/");
-  subdir["QCD170"  ].push_back("QCD_Pt_170to300_v01.root");
-  subdir["QCD300"  ].push_back("QCD_Pt_300to470_v01.root");
-  subdir["QCD470"  ].push_back("QCD_Pt_470to600_v01.root");
+  subdir["QCD120"  ].push_back("QCD_Pt_120to170_v02.root");
+  subdir["QCD170"  ].push_back("QCD_Pt_170to300_v02.root");
+  subdir["QCD300"  ].push_back("QCD_Pt_300to470_v02.root");
+  subdir["QCD470"  ].push_back("QCD_Pt_470to600_v02.root");
   //subdir["QCDMu15" ].push_back("B/QCD_Pt-15to20_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/QCDMu15/170428_145222/0000/");
   //subdir["QCDMu20" ].push_back("B/QCD_Pt-20to30_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/QCDMu20/170428_145153/0000/");
   //subdir["QCDMu30" ].push_back("C/QCD_Pt-30to50_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/QCDMu30/170502_141815/0000/");

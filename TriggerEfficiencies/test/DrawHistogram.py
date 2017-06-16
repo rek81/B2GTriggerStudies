@@ -12,12 +12,12 @@ import argparse
 import B2GTriggerStudies.TriggerEfficiencies.CMS_lumi as CMS_lumi 
 import B2GTriggerStudies.TriggerEfficiencies.tdrstyle as tdrstyle
 
-gROOT.Reset()
+#gROOT.Reset()
 gROOT.SetBatch()
 gROOT.ForceStyle()
-#tdrstyle.setTDRStyle()
+tdrstyle.setTDRStyle()
 
-#gStyle.SetOptStat(0)
+gStyle.SetOptStat(0)
 
 
 def plotTriggerEfficiency( inFileSample, sample, triggerDenom, name, cut, xmin, xmax, xlabel, rebin, labX, labY, log):
@@ -26,10 +26,10 @@ def plotTriggerEfficiency( inFileSample, sample, triggerDenom, name, cut, xmin, 
 	outputFileName = name+'_'+cut+'_'+triggerDenom+"_"+args.trigger+'_'+sample+'_'+'_TriggerEfficiency'+args.version+'.'+args.extension
 	print 'Processing.......', outputFileName
 
-	DenomOnly = inFileSample.Get( 'PFHTAK8jetsriggerEfficiency/'+name+'Denom'+cut ) 
+	DenomOnly = inFileSample.Get( 'PFHT'+cut+'TriggerEfficiency/'+name+'Denom' ) #+cut ) 
 	DenomOnly.Rebin(rebin)
 	Denom = DenomOnly.Clone()
-	PassingOnly = inFileSample.Get( 'PFHTAK8jetsriggerEfficiency/'+name+'Passing'+cut ) 
+	PassingOnly = inFileSample.Get( 'PFHT'+cut+'TriggerEfficiency/'+name+'Passing' ) #+cut ) 
 	PassingOnly.Rebin(rebin)
 	Passing = PassingOnly.Clone()
 	print Denom, Passing
@@ -397,11 +397,11 @@ if __name__ == '__main__':
 
 	plotList = [ 
 
-		[ '1D', 'HT', 100, 1500, 'HT [GeV]', 10, triggerlabX, triggerlabY, True],
+		[ '1D', 'HT', 500, 2000, 'HT [GeV]', 20, triggerlabX, triggerlabY, True],
 		#[ '1D', 'HT', 800, 1200, 1, triggerlabX, triggerlabY, True],
-		[ '1D', 'jet1Pt', ptMinX, ptMaxX, 'Leading Jet Pt [GeV]',  2, triggerlabX, triggerlabY, True],
+		[ '1D', 'jet1Pt', ptMinX, ptMaxX, 'Leading Jet Pt [GeV]',  10, triggerlabX, triggerlabY, True],
 #		[ '1D', 'jet2Pt', ptMinX, ptMaxX, 2, triggerlabX, triggerlabY, True],
-		[ '1D', 'jet1SoftDropMass', 0, 500, 'Leading Jet Softdrop Mass [GeV]', 1, triggerlabX, triggerlabY, True],
+		[ '1D', 'jet1SoftDropMass', 0, 500, 'Leading Jet Softdrop Mass [GeV]', 10, triggerlabX, triggerlabY, True],
 		[ '1D', 'massAve', 0, 500, 10, triggerlabX, triggerlabY, True],
 		[ 'tmp', 'jet1SoftDropMass', 0, 500, 1, triggerlabX, triggerlabY, True],
 
@@ -438,6 +438,7 @@ if __name__ == '__main__':
 	Samples[ 'SingleMuonH' ] = [ 'RUNTriggerEfficiencies_SingleMuon_Run2016H_V2p4_'+args.version+'.root', 8629.24 ] 
 	Samples[ 'SingleMuonAll' ] = [ 'RUNTriggerEfficiencies_SingleMuon_Run2016_V2p4_'+args.version+'.root', 35864. ] 
 
+	Samples[ 'JetHT2017' ] = [ 'TriggerValAndEff_JetHT-Run2017A.root', 0 ] 
 	Samples[ 'JetHTB' ] = [ 'RUNTriggerEfficiencies_JetHT_Run2016B_V2p1_'+args.version+'.root', 40.49 ] 
 	Samples[ 'JetHTC' ] = [ 'RUNTriggerEfficiencies_JetHT_Run2016C_V2p1_'+args.version+'.root', 2.13 ] 
 	Samples[ 'JetHTD' ] = [ 'RUNTriggerEfficiencies_JetHT_Run2016D_V2p1_'+args.version+'.root', 1.58 ] 
@@ -459,8 +460,8 @@ if __name__ == '__main__':
 	for sam in processingSamples:
 
 		CMS_lumi.lumi_13TeV = str( round( (processingSamples[sam][1]/1000.), 1 ) )+" fb^{-1}"
-		if 'SingleMu' in sam: BASEDTrigger = 'Mu50'
-		elif 'JetHT' in sam: BASEDTrigger = 'PFHT475'
+		if 'SingleMu' in sam: BASEDTrigger = 'IsoMu27'
+		elif 'JetHT' in sam: BASEDTrigger = 'PFJet40'
 
 		for i in Plots:
 			if '1D' in args.proc:
