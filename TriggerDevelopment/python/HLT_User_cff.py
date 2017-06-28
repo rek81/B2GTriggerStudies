@@ -4557,7 +4557,7 @@ modifyHLTforEras(fragment)
 
 
 fragment.HLTConfigVersion = cms.PSet(
-  tableName = cms.string('/users/algomez/B2GTriggers/V46')
+  tableName = cms.string('/users/algomez/B2GTriggers/V49')
 )
 
 fragment.hltTriggerType = cms.EDFilter( "HLTTriggerTypeFilter",
@@ -9875,66 +9875,6 @@ fragment.hlt1AK8PFJetsSDMass50Pt200 = cms.EDFilter( "HLT1PFJet",
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
 )
-fragment.hltPreAK8PFHT750SDMass40 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hlt1AK8PFJetsSDMass40Pt200 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 200.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 40.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFHT750SDMass30 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hlt1AK8PFJetsSDMass30Pt200 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 200.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 30.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFHT750SDMass20 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hlt1AK8PFJetsSDMass20Pt200 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 200.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 20.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFHT750SDMass10 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hlt1AK8PFJetsSDMass10Pt200 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 200.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 10.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
 fragment.hltPreAK8PFHT800TrimMass50 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
@@ -9957,23 +9897,7 @@ fragment.hltAK8PFHT800 = cms.EDFilter( "HLTHtMhtFilter",
     htLabels = cms.VInputTag( 'hltAK8PFHTwJetPt200' ),
     minHt = cms.vdouble( 800.0 )
 )
-fragment.hltPreAK8PFHT800SDMass40 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
 fragment.hltPreAK8PFHT800SDMass50 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltPreAK8PFHT800SDMass30 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltPreAK8PFHT800SDMass20 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltPreAK8PFHT800SDMass10 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
@@ -10000,22 +9924,6 @@ fragment.hltAK8PFHT850 = cms.EDFilter( "HLTHtMhtFilter",
     minHt = cms.vdouble( 850.0 )
 )
 fragment.hltPreAK8PFHT850SDMass50 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltPreAK8PFHT850SDMass40 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltPreAK8PFHT850SDMass30 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltPreAK8PFHT850SDMass20 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltPreAK8PFHT850SDMass10 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
@@ -10052,7 +9960,7 @@ fragment.hltL1sSingleJet180 = cms.EDFilter( "HLTL1TSeed",
     L1MuonInputTag = cms.InputTag( 'hltGtStage2Digis','Muon' ),
     L1GlobalInputTag = cms.InputTag( "hltGtStage2Digis" )
 )
-fragment.hltPreAK8PFJet340SDMass10 = cms.EDFilter( "HLTPrescaler",
+fragment.hltPreAK8PFJet340SDMass30 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
@@ -10073,36 +9981,6 @@ fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 = cms.EDProducer( "PFJetsMatc
     TriggerType = cms.int32( 85 ),
     PFJetSrc = cms.InputTag( "hltAK8PFJetsCorrected" )
 )
-fragment.hltAK8SinglePFJet340SDMass10 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 340.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 10.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet340SDMass20 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet340SDMass20 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 340.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 20.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet340SDMass30 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
 fragment.hltAK8SinglePFJet340SDMass30 = cms.EDFilter( "HLT1PFJet",
     saveTags = cms.bool( True ),
     MinPt = cms.double( 340.0 ),
@@ -10110,66 +9988,6 @@ fragment.hltAK8SinglePFJet340SDMass30 = cms.EDFilter( "HLT1PFJet",
     MaxEta = cms.double( 2.5 ),
     MinEta = cms.double( -1.0 ),
     MinMass = cms.double( 30.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet340SDMass40 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet340SDMass40 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 340.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 40.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet340SDMass50 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet340SDMass50 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 340.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 50.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet360SDMass10 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet360SDMass10 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 360.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 10.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet360SDMass20 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet360SDMass20 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 360.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 20.0 ),
     inputTag = cms.InputTag( "hltAK8SDJets" ),
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
@@ -10189,36 +10007,6 @@ fragment.hltAK8SinglePFJet360SDMass30 = cms.EDFilter( "HLT1PFJet",
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
 )
-fragment.hltPreAK8PFJet360SDMass40 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet360SDMass40 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 360.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 40.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet360SDMass50 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet360SDMass50 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 360.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 50.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
 fragment.hltPreAK8PFJet360TrimMass30 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
@@ -10234,7 +10022,7 @@ fragment.hltAK8SinglePFJet360TrimModMass30 = cms.EDFilter( "HLT1PFJet",
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
 )
-fragment.hltPreAK8PFJet360TrimMass30AK4CaloBtagCSVp067 = cms.EDFilter( "HLTPrescaler",
+fragment.hltPreAK8PFJet360TrimMass30AK4CaloBtagCSVp080 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
@@ -11485,16 +11273,63 @@ fragment.hltCombinedSecondaryVertexBJetTagsCalo = cms.EDProducer( "JetTagProduce
     jetTagComputer = cms.string( "hltCombinedSecondaryVertexV2" ),
     tagInfos = cms.VInputTag( 'hltImpactParameterTagInfos','hltInclusiveSecondaryVertexFinderTagInfos' )
 )
-fragment.hltBTagCaloCSVp067Single = cms.EDFilter( "HLTCaloJetTag",
+fragment.hltBTagCaloCSVp080Single = cms.EDFilter( "HLTCaloJetTag",
     saveTags = cms.bool( True ),
     MinJets = cms.int32( 1 ),
     JetTags = cms.InputTag( "hltCombinedSecondaryVertexBJetTagsCalo" ),
     TriggerType = cms.int32( 86 ),
     Jets = cms.InputTag( "hltSelector8CentralJetsL1FastJet" ),
-    MinTag = cms.double( 0.62 ),
+    MinTag = cms.double( 0.8 ),
     MaxTag = cms.double( 99999.0 )
 )
-fragment.hltPreAK8PFJet380TrimMass30AK4CaloBtagCSVp067 = cms.EDFilter( "HLTPrescaler",
+fragment.hltPreAK8PFJet340TrimMass30AK4CaloBtagCSVp080 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+fragment.hltAK8SingleCaloJet240 = cms.EDFilter( "HLT1CaloJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 260.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.5 ),
+    MinEta = cms.double( -1.0 ),
+    MinMass = cms.double( -1.0 ),
+    inputTag = cms.InputTag( "hltAK8CaloJetsCorrectedIDPassed" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+fragment.hltAK8PFJetsCorrectedMatchedToCaloJets240 = cms.EDProducer( "PFJetsMatchedToFilteredCaloJetsProducer",
+    DeltaR = cms.double( 0.5 ),
+    CaloJetFilter = cms.InputTag( "hltAK8SingleCaloJet240" ),
+    TriggerType = cms.int32( 85 ),
+    PFJetSrc = cms.InputTag( "hltAK8PFJetsCorrected" )
+)
+fragment.hltAK8SinglePFJet340TrimModMass30 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 340.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.5 ),
+    MinEta = cms.double( -1.0 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8TrimModJets" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+fragment.hltPreAK8PFJet320TrimMass30AK4CaloBtagCSVp080 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
+)
+fragment.hltAK8SinglePFJet320TrimModMass30 = cms.EDFilter( "HLT1PFJet",
+    saveTags = cms.bool( True ),
+    MinPt = cms.double( 320.0 ),
+    MinN = cms.int32( 1 ),
+    MaxEta = cms.double( 2.5 ),
+    MinEta = cms.double( -1.0 ),
+    MinMass = cms.double( 30.0 ),
+    inputTag = cms.InputTag( "hltAK8TrimModJets" ),
+    MinE = cms.double( -1.0 ),
+    triggerType = cms.int32( 85 )
+)
+fragment.hltPreAK8PFJet380TrimMass30AK4CaloBtagCSVp080 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
@@ -11892,35 +11727,17 @@ fragment.hltBTagPFCSVp080Single = cms.EDFilter( "HLTPFJetTag",
     MinTag = cms.double( 0.8 ),
     MaxTag = cms.double( 999999.0 )
 )
-fragment.hltPreAK8PFJet380SDMass10 = cms.EDFilter( "HLTPrescaler",
+fragment.hltPreAK8PFJet360TrimMass30AK4PFBtagCSVp080 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
-fragment.hltAK8SinglePFJet380SDMass10 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 380.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 10.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet380SDMass20 = cms.EDFilter( "HLTPrescaler",
+fragment.hltPreAK8PFJet340TrimMass30AK4PFBtagCSVp080 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
-fragment.hltAK8SinglePFJet380SDMass20 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 380.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 20.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
+fragment.hltPreAK8PFJet320TrimMass30AK4PFBtagCSVp080 = cms.EDFilter( "HLTPrescaler",
+    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
+    offset = cms.uint32( 0 )
 )
 fragment.hltPreAK8PFJet380SDMass30 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
@@ -11937,41 +11754,11 @@ fragment.hltAK8SinglePFJet380SDMass30 = cms.EDFilter( "HLT1PFJet",
     MinE = cms.double( -1.0 ),
     triggerType = cms.int32( 85 )
 )
-fragment.hltPreAK8PFJet380SDMass40 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet380SDMass40 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 380.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 40.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet380SDMass50 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet380SDMass50 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 380.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 50.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
 fragment.hltPreAK8PFJet380TrimMass30 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
-fragment.hltPreAK8PFJet400SDMass10 = cms.EDFilter( "HLTPrescaler",
+fragment.hltPreAK8PFJet400SDMass30 = cms.EDFilter( "HLTPrescaler",
     L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
     offset = cms.uint32( 0 )
 )
@@ -11991,36 +11778,6 @@ fragment.hltAK8PFJetsCorrectedMatchedToCaloJets300 = cms.EDProducer( "PFJetsMatc
     CaloJetFilter = cms.InputTag( "hltAK8SingleCaloJet300" ),
     TriggerType = cms.int32( 85 ),
     PFJetSrc = cms.InputTag( "hltAK8PFJetsCorrected" )
-)
-fragment.hltAK8SinglePFJet400SDMass10 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 400.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 10.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet400SDMass20 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
-)
-fragment.hltAK8SinglePFJet400SDMass20 = cms.EDFilter( "HLT1PFJet",
-    saveTags = cms.bool( True ),
-    MinPt = cms.double( 400.0 ),
-    MinN = cms.int32( 1 ),
-    MaxEta = cms.double( 2.5 ),
-    MinEta = cms.double( -1.0 ),
-    MinMass = cms.double( 20.0 ),
-    inputTag = cms.InputTag( "hltAK8SDJets" ),
-    MinE = cms.double( -1.0 ),
-    triggerType = cms.int32( 85 )
-)
-fragment.hltPreAK8PFJet400SDMass30 = cms.EDFilter( "HLTPrescaler",
-    L1GtReadoutRecordTag = cms.InputTag( "hltGtStage2Digis" ),
-    offset = cms.uint32( 0 )
 )
 fragment.hltAK8SinglePFJet400SDMass30 = cms.EDFilter( "HLT1PFJet",
     saveTags = cms.bool( True ),
@@ -12212,52 +11969,31 @@ fragment.HLTBtagCSVSequencePF = cms.Sequence( fragment.hltVerticesPF + fragment.
 
 fragment.HLT_AK8PFHT750_TrimMass50_v2 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT750TrimMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht650 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8TrimModJets + fragment.hlt1AK8PFJetsTrimMass50Pt200 + fragment.hltAK8PFHT750 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFHT750_SDMass50_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT750SDMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht650 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass50Pt200 + fragment.hltAK8PFHT750 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT750_SDMass40_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT750SDMass40 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht650 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass40Pt200 + fragment.hltAK8PFHT750 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT750_SDMass30_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT750SDMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht650 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass30Pt200 + fragment.hltAK8PFHT750 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT750_SDMass20_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT750SDMass20 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht650 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass20Pt200 + fragment.hltAK8PFHT750 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT750_SDMass10_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT750SDMass10 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht650 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass10Pt200 + fragment.hltAK8PFHT750 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFHT800_TrimMass50_v2 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT800TrimMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht700 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8TrimModJets + fragment.hlt1AK8PFJetsTrimMass50Pt200 + fragment.hltAK8PFHT800 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT800_SDMass40_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT800SDMass40 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht700 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass40Pt200 + fragment.hltAK8PFHT800 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFHT800_SDMass50_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT800SDMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht700 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass50Pt200 + fragment.hltAK8PFHT800 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT800_SDMass30_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT800SDMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht700 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass30Pt200 + fragment.hltAK8PFHT800 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT800_SDMass20_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT800SDMass20 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht700 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass20Pt200 + fragment.hltAK8PFHT800 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT800_SDMass10_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT800SDMass10 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht700 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass10Pt200 + fragment.hltAK8PFHT800 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFHT850_TrimMass50_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT850TrimMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht750 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8TrimModJets + fragment.hlt1AK8PFJetsTrimMass50Pt200 + fragment.hltAK8PFHT850 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFHT850_SDMass50_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT850SDMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht750 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass50Pt200 + fragment.hltAK8PFHT850 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT850_SDMass40_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT850SDMass40 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht750 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass40Pt200 + fragment.hltAK8PFHT850 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT850_SDMass30_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT850SDMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht750 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass30Pt200 + fragment.hltAK8PFHT850 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT850_SDMass20_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT850SDMass20 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht750 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass20Pt200 + fragment.hltAK8PFHT850 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFHT850_SDMass10_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT850SDMass10 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht750 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8SDJets + fragment.hlt1AK8PFJetsSDMass10Pt200 + fragment.hltAK8PFHT850 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFHT900_TrimMass50_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPreAK8PFHT900TrimMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8HtMht + fragment.hltAK8Ht800 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFHTwJetPt200 + fragment.hltAK8TrimModJets + fragment.hlt1AK8PFJetsTrimMass50Pt200 + fragment.hltAK8PFHT900 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet340_SDMass10_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet340SDMass10 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet340SDMass10 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet340_SDMass20_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet340SDMass20 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet340SDMass20 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet340_SDMass30_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet340SDMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet340SDMass30 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet340_SDMass40_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet340SDMass40 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet340SDMass40 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet340_SDMass50_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet340SDMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet340SDMass50 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet360_SDMass10_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360SDMass10 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet360SDMass10 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet360_SDMass20_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360SDMass20 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet360SDMass20 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet360_SDMass30_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360SDMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet360SDMass30 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet360_SDMass40_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360SDMass40 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet360SDMass40 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet360_SDMass50_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360SDMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet360SDMass50 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet360_TrimMass30_v8 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360TrimMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet360TrimModMass30 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet360_TrimMass30_AK4CaloBtagCSV_p067_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360TrimMass30AK4CaloBtagCSVp067 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK4CaloJetsSequence + fragment.HLTBtagCSVSequenceL3 + fragment.hltBTagCaloCSVp067Single + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet360TrimModMass30 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet380_TrimMass30_AK4CaloBtagCSV_p067_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380TrimMass30AK4CaloBtagCSVp067 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK4CaloJetsSequence + fragment.HLTBtagCSVSequenceL3 + fragment.hltBTagCaloCSVp067Single + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet380TrimModMass30 + fragment.HLTEndSequence )
+fragment.HLT_AK8PFJet360_TrimMass30_AK4CaloBtagCSV_p080_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360TrimMass30AK4CaloBtagCSVp080 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK4CaloJetsSequence + fragment.HLTBtagCSVSequenceL3 + fragment.hltBTagCaloCSVp080Single + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet360TrimModMass30 + fragment.HLTEndSequence )
+fragment.HLT_AK8PFJet340_TrimMass30_AK4CaloBtagCSV_p080_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet340TrimMass30AK4CaloBtagCSVp080 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet240 + fragment.HLTAK4CaloJetsSequence + fragment.HLTBtagCSVSequenceL3 + fragment.hltBTagCaloCSVp080Single + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets240 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet340TrimModMass30 + fragment.HLTEndSequence )
+fragment.HLT_AK8PFJet320_TrimMass30_AK4CaloBtagCSV_p080_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet320TrimMass30AK4CaloBtagCSVp080 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet240 + fragment.HLTAK4CaloJetsSequence + fragment.HLTBtagCSVSequenceL3 + fragment.hltBTagCaloCSVp080Single + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets240 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet320TrimModMass30 + fragment.HLTEndSequence )
+fragment.HLT_AK8PFJet380_TrimMass30_AK4CaloBtagCSV_p080_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380TrimMass30AK4CaloBtagCSVp080 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK4CaloJetsSequence + fragment.HLTBtagCSVSequenceL3 + fragment.hltBTagCaloCSVp080Single + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet380TrimModMass30 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet380_TrimMass30_AK4PFBtagCSV_p080_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380TrimMass30AK4PFBtagCSVp080 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet380TrimModMass30 + fragment.HLTAK4PFJetsSequence + fragment.HLTBtagCSVSequencePF + fragment.hltBTagPFCSVp080Single + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet380_SDMass10_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380SDMass10 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet380SDMass10 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet380_SDMass20_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380SDMass20 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet380SDMass20 + fragment.HLTEndSequence )
+fragment.HLT_AK8PFJet360_TrimMass30_AK4PFBtagCSV_p080_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet360TrimMass30AK4PFBtagCSVp080 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet260 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets260 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet360TrimModMass30 + fragment.HLTAK4PFJetsSequence + fragment.HLTBtagCSVSequencePF + fragment.hltBTagPFCSVp080Single + fragment.HLTEndSequence )
+fragment.HLT_AK8PFJet340_TrimMass30_AK4PFBtagCSV_p080_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet340TrimMass30AK4PFBtagCSVp080 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet240 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets240 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet340TrimModMass30 + fragment.HLTAK4PFJetsSequence + fragment.HLTBtagCSVSequencePF + fragment.hltBTagPFCSVp080Single + fragment.HLTEndSequence )
+fragment.HLT_AK8PFJet320_TrimMass30_AK4PFBtagCSV_p080_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet320TrimMass30AK4PFBtagCSVp080 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet240 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets240 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet320TrimModMass30 + fragment.HLTAK4PFJetsSequence + fragment.HLTBtagCSVSequencePF + fragment.hltBTagPFCSVp080Single + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet380_SDMass30_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380SDMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet380SDMass30 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet380_SDMass40_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380SDMass40 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet380SDMass40 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet380_SDMass50_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380SDMass50 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet380SDMass50 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet380_TrimMass30_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet380TrimMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet280 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets280 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet380TrimModMass30 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet400_SDMass10_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet400SDMass10 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet300 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets300 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet400SDMass10 + fragment.HLTEndSequence )
-fragment.HLT_AK8PFJet400_SDMass20_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet400SDMass20 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet300 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets300 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet400SDMass20 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet400_SDMass30_v1 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet400SDMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet300 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets300 + fragment.hltAK8SDJets + fragment.hltAK8SinglePFJet400SDMass30 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet400_TrimMass30_v2 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet180 + fragment.hltPreAK8PFJet400TrimMass30 + fragment.HLTAK8CaloJetsSequence + fragment.hltAK8SingleCaloJet300 + fragment.HLTAK8PFJetsSequence + fragment.hltAK8PFJetsCorrectedMatchedToCaloJets300 + fragment.hltAK8TrimModJets + fragment.hltAK8SinglePFJet400TrimModMass30 + fragment.HLTEndSequence )
 fragment.HLT_AK8PFJet500_v6 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sSingleJet170IorSingleJet180IorSingleJet200 + fragment.hltPreAK8PFJet500 + fragment.HLTAK8CaloJetsSequence + fragment.hltSingleCaloJet450AK8 + fragment.HLTAK8PFJetsSequence + fragment.hltPFJetsCorrectedMatchedToCaloJets450AK8 + fragment.hltSinglePFJet500AK8 + fragment.HLTEndSequence )
 fragment.HLT_PFHT1050_v7 = cms.Path( fragment.HLTBeginSequence + fragment.hltL1sAllHTTSeeds + fragment.hltPrePFHT1050 + fragment.HLTAK4CaloJetsSequence + fragment.hltHtMhtJet30 + fragment.hltHT900Jet30 + fragment.HLTAK4PFJetsSequence + fragment.hltPFHTJet30 + fragment.hltPFHT1050Jet30 + fragment.HLTEndSequence )
 
 
-fragment.HLTSchedule = cms.Schedule( *(fragment.HLT_AK8PFHT750_TrimMass50_v2, fragment.HLT_AK8PFHT750_SDMass50_v1, fragment.HLT_AK8PFHT750_SDMass40_v1, fragment.HLT_AK8PFHT750_SDMass30_v1, fragment.HLT_AK8PFHT750_SDMass20_v1, fragment.HLT_AK8PFHT750_SDMass10_v1, fragment.HLT_AK8PFHT800_TrimMass50_v2, fragment.HLT_AK8PFHT800_SDMass40_v1, fragment.HLT_AK8PFHT800_SDMass50_v1, fragment.HLT_AK8PFHT800_SDMass30_v1, fragment.HLT_AK8PFHT800_SDMass20_v1, fragment.HLT_AK8PFHT800_SDMass10_v1, fragment.HLT_AK8PFHT850_TrimMass50_v1, fragment.HLT_AK8PFHT850_SDMass50_v1, fragment.HLT_AK8PFHT850_SDMass40_v1, fragment.HLT_AK8PFHT850_SDMass30_v1, fragment.HLT_AK8PFHT850_SDMass20_v1, fragment.HLT_AK8PFHT850_SDMass10_v1, fragment.HLT_AK8PFHT900_TrimMass50_v1, fragment.HLT_AK8PFJet340_SDMass10_v1, fragment.HLT_AK8PFJet340_SDMass20_v1, fragment.HLT_AK8PFJet340_SDMass30_v1, fragment.HLT_AK8PFJet340_SDMass40_v1, fragment.HLT_AK8PFJet340_SDMass50_v1, fragment.HLT_AK8PFJet360_SDMass10_v1, fragment.HLT_AK8PFJet360_SDMass20_v1, fragment.HLT_AK8PFJet360_SDMass30_v1, fragment.HLT_AK8PFJet360_SDMass40_v1, fragment.HLT_AK8PFJet360_SDMass50_v1, fragment.HLT_AK8PFJet360_TrimMass30_v8, fragment.HLT_AK8PFJet360_TrimMass30_AK4CaloBtagCSV_p067_v1, fragment.HLT_AK8PFJet380_TrimMass30_AK4CaloBtagCSV_p067_v1, fragment.HLT_AK8PFJet380_TrimMass30_AK4PFBtagCSV_p080_v1, fragment.HLT_AK8PFJet380_SDMass10_v1, fragment.HLT_AK8PFJet380_SDMass20_v1, fragment.HLT_AK8PFJet380_SDMass30_v1, fragment.HLT_AK8PFJet380_SDMass40_v1, fragment.HLT_AK8PFJet380_SDMass50_v1, fragment.HLT_AK8PFJet380_TrimMass30_v1, fragment.HLT_AK8PFJet400_SDMass10_v1, fragment.HLT_AK8PFJet400_SDMass20_v1, fragment.HLT_AK8PFJet400_SDMass30_v1, fragment.HLT_AK8PFJet400_TrimMass30_v2, fragment.HLT_AK8PFJet500_v6, fragment.HLT_PFHT1050_v7 ))
+fragment.HLTSchedule = cms.Schedule( *(fragment.HLT_AK8PFHT750_TrimMass50_v2, fragment.HLT_AK8PFHT750_SDMass50_v1, fragment.HLT_AK8PFHT800_TrimMass50_v2, fragment.HLT_AK8PFHT800_SDMass50_v1, fragment.HLT_AK8PFHT850_TrimMass50_v1, fragment.HLT_AK8PFHT850_SDMass50_v1, fragment.HLT_AK8PFHT900_TrimMass50_v1, fragment.HLT_AK8PFJet340_SDMass30_v1, fragment.HLT_AK8PFJet360_SDMass30_v1, fragment.HLT_AK8PFJet360_TrimMass30_v8, fragment.HLT_AK8PFJet360_TrimMass30_AK4CaloBtagCSV_p080_v1, fragment.HLT_AK8PFJet340_TrimMass30_AK4CaloBtagCSV_p080_v1, fragment.HLT_AK8PFJet320_TrimMass30_AK4CaloBtagCSV_p080_v1, fragment.HLT_AK8PFJet380_TrimMass30_AK4CaloBtagCSV_p080_v1, fragment.HLT_AK8PFJet380_TrimMass30_AK4PFBtagCSV_p080_v1, fragment.HLT_AK8PFJet360_TrimMass30_AK4PFBtagCSV_p080_v1, fragment.HLT_AK8PFJet340_TrimMass30_AK4PFBtagCSV_p080_v1, fragment.HLT_AK8PFJet320_TrimMass30_AK4PFBtagCSV_p080_v1, fragment.HLT_AK8PFJet380_SDMass30_v1, fragment.HLT_AK8PFJet380_TrimMass30_v1, fragment.HLT_AK8PFJet400_SDMass30_v1, fragment.HLT_AK8PFJet400_TrimMass30_v2, fragment.HLT_AK8PFJet500_v6, fragment.HLT_PFHT1050_v7 ))
 
 
 # dummyfy hltGetConditions in cff's

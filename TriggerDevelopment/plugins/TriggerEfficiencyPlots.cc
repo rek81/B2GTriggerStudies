@@ -261,25 +261,6 @@ void TriggerEfficiencyPlots::analyze(const edm::Event& iEvent, const edm::EventS
 	}
 	//edm::LogWarning("test")<< hlt1Jet.M() << " " << hlt1Jet.Pt() << " " << hltHT ;
 
-	/*/// Puppi from toolbox
-	edm::Handle<pat::JetCollection> patJets;
-	iEvent.getByToken(patJetsToken,patJets);
-	TLorentzVector pat1Jet;
-	double patHT = 0;
-	int npatJets =0;
-	for(const pat::Jet &ijet : *patJets ){
-		if ( ijet.pt() < minPt || abs( ijet.eta() ) > 2.4 ) continue;
-		patHT += ijet.pt();
-		if ( (npatJets++) == 1 ) {
-			pat1Jet.SetPtEtaPhiE( ijet.pt(), ijet.eta(), ijet.phi(), ijet.energy() );
-			histos1D_[ "patjet1PtDenom" ]->Fill( ijet.pt() );
-			if (triggerResults->accept(triggerBit)){
-				histos1D_[ "patjet1PtPassing" ]->Fill( ijet.pt() );
-			}
-		}
-		
-	}*/
-
 }
 
 

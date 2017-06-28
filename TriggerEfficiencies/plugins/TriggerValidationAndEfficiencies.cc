@@ -47,10 +47,13 @@ class TriggerValidationAndEfficiencies : public EDAnalyzer {
 	EDGetTokenT<pat::JetCollection> jetToken_;
 	string baseTrigger_;
       	vector<string> triggerPass_;
+      	vector<int> triggerOverlap_;
+      	vector<int> triggerOverlapBase_;
 	string hltObjectPt_;
 	string hltObjectMass_;
 	double recojetPt_;
 	bool AK8jets_;
+	bool runHLTObjects_;
 
 	Service<TFileService> fs_;
 	map< string, TH1D* > histos1D_;
@@ -65,10 +68,13 @@ TriggerValidationAndEfficiencies::TriggerValidationAndEfficiencies(const Paramet
 {
 	baseTrigger_ = iConfig.getParameter<string>("baseTrigger");
 	triggerPass_ = iConfig.getParameter<vector<string>>("triggerPass");
+	triggerOverlap_ = iConfig.getParameter<vector<int>>("triggerOverlap");
+	triggerOverlapBase_ = iConfig.getParameter<vector<int>>("triggerOverlapBase");
 	hltObjectPt_ = iConfig.getParameter<string>("hltObjectPt");
 	hltObjectMass_ = iConfig.getParameter<string>("hltObjectMass");
 	recojetPt_ = iConfig.getParameter<double>("recojetPt");
 	AK8jets_ = iConfig.getParameter<bool>("AK8jets");
+	runHLTObjects_ = iConfig.getParameter<bool>("runHLTObjects");
 }
 
 void TriggerValidationAndEfficiencies::analyze(const Event& iEvent, const EventSetup& iSetup) {
@@ -109,41 +115,45 @@ void TriggerValidationAndEfficiencies::analyze(const Event& iEvent, const EventS
 
 
 	///// TO TEST HLT OBJECTS
-	double hltPt = 0;
-	double hltMass = 0;
-	for (pat::TriggerObjectStandAlone obj : *triggerObjects) { // note: not "const &" since we want to call unpackPathNames
-		obj.unpackPathNames(names);
-		obj.unpackFilterLabels(iEvent, *triggerBits );
-		for (unsigned h = 0; h < obj.filterLabels().size(); ++h){
-			TString filterLabel = obj.filterLabels()[h];
+	if ( runHLTObjects_ ){
+		double hltPt = 0;
+		double hltMass = 0;
+		for (pat::TriggerObjectStandAlone obj : *triggerObjects) { // note: not "const &" since we want to call unpackPathNames
+			obj.unpackPathNames(names);
+			obj.unpackFilterLabels(iEvent, *triggerBits );
+			for (unsigned h = 0; h < obj.filterLabels().size(); ++h){
+				TString filterLabel = obj.filterLabels()[h];
 
-			if ( filterLabel.Contains( hltObjectPt_ ) ) {
-				cout << "\tTrigger object Pt:  pt " << obj.pt() 
-									<< ", eta " << obj.eta() 
-									<< ", phi " << obj.phi() 
-									<< ", mass " << obj.mass() << endl;
-				hltPt = obj.pt();
-				histos1D_[ "hltObjectPt" ]->Fill( hltPt );
-			}
+				if ( filterLabel.Contains( hltObjectPt_ ) ) {
+					cout << "\tTrigger object Pt:  pt " << obj.pt() 
+										<< ", eta " << obj.eta() 
+										<< ", phi " << obj.phi() 
+										<< ", mass " << obj.mass() << endl;
+					hltPt = obj.pt();
+					histos1D_[ "hltObjectPt" ]->Fill( hltPt );
+				}
 
-			if ( filterLabel.Contains( hltObjectMass_ ) ) {
-				/*cout << "\tTrigger object Mass:  pt " << obj.pt() 
-									<< ", eta " << obj.eta() 
-									<< ", phi " << obj.phi() 
-									<< ", mass " << obj.mass() << endl; 
-				*/
-				hltMass = obj.mass();
-				histos1D_[ "hltObjectMass" ]->Fill( hltMass );
+				if ( filterLabel.Contains( hltObjectMass_ ) ) {
+					/*cout << "\tTrigger object Mass:  pt " << obj.pt() 
+										<< ", eta " << obj.eta() 
+										<< ", phi " << obj.phi() 
+										<< ", mass " << obj.mass() << endl; 
+					*/
+					hltMass = obj.mass();
+					histos1D_[ "hltObjectMass" ]->Fill( hltMass );
+				}
 			}
 		}
+		if ( hltPt > 0 ) histos2D_[ "hltObjectPtvsMass" ]->Fill( hltPt, hltMass );
 	}
-	if ( hltPt > 0 ) histos2D_[ "hltObjectPtvsMass" ]->Fill( hltPt, hltMass );
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/// TRIGGER EFFICENCY
 	if ( baseTrigger || ORTriggers ) {
 
 		double HT = 0;
+		double jet1SoftdropMass = 0;
+		double jet1Pt = 0;
 		int k = 0;
 		for (const pat::Jet &jet : *jets) {
 
@@ -157,6 +167,8 @@ void TriggerValidationAndEfficiencies::analyze(const Event& iEvent, const EventS
 				histos1D_[ "jet1Pt" ]->Fill( jet.pt() );
 
 				if ( AK8jets_ ) {
+					jet1SoftdropMass = jet.userFloat( "ak8PFJetsPuppiSoftDropMass" );
+					jet1Pt = jet.pt();
 					histos1D_[ "jet1SoftDropMass" ]->Fill( jet.userFloat( "ak8PFJetsPuppiSoftDropMass" ) );
 					if ( baseTrigger ) {
 						histos1D_[ "jet1SoftDropMassDenom" ]->Fill( jet.userFloat( "ak8PFJetsPuppiSoftDropMass" ) );
@@ -174,9 +186,50 @@ void TriggerValidationAndEfficiencies::analyze(const Event& iEvent, const EventS
 		
 		if ( baseTrigger ) {
 			histos1D_[ "HTDenom" ]->Fill( HT );
+			histos2D_[ "jet1SDMassvsHTDenom" ]->Fill( jet1SoftdropMass, HT );
+			histos2D_[ "jet1SDMassvsPtDenom" ]->Fill( jet1SoftdropMass, jet1Pt );
 
 			if ( ORTriggers ){
 				histos1D_[ "HTPassing" ]->Fill( HT );
+				histos2D_[ "jet1SDMassvsHTPassing" ]->Fill( jet1SoftdropMass, HT );
+				histos2D_[ "jet1SDMassvsPtPassing" ]->Fill( jet1SoftdropMass, jet1Pt );
+			}
+		}
+
+
+		////// checking overlap
+		if ( triggerOverlapBase_[0] != triggerOverlap_[0] ) {
+
+			bool overlapBase = 0;
+			vector<bool> vectorOverlapBase;
+			for (size_t b = 0; b < triggerOverlapBase_.size(); b++) {
+				vectorOverlapBase.push_back( triggersFired[ triggerOverlapBase_[b] ] );	
+				//LogWarning("base") <<  triggerOverlapBase_[b] << " " << triggersFired[triggerOverlapBase_[b]];
+			}
+			overlapBase = any_of(vectorOverlapBase.begin(), vectorOverlapBase.end(), [](bool v) { return v; }); 
+			//LogWarning("baseAll") <<  overlapBase;
+
+			bool overlap = 0;
+			vector<bool> vectorOverlap;
+			for (size_t b = 0; b < triggerOverlap_.size(); b++) {
+				vectorOverlap.push_back( triggersFired[ triggerOverlap_[b] ] );	
+				//LogWarning("no base") <<  triggerOverlap_[b] << " " << triggersFired[triggerOverlap_[b]];
+			}
+			overlap = any_of(vectorOverlap.begin(), vectorOverlap.end(), [](bool v) { return v; }); 
+			//LogWarning("no baseAll") <<  overlap;
+			
+			if ( overlapBase && overlap ) {
+				histos2D_[ "jet1SDMassvsHT11" ]->Fill( jet1SoftdropMass, HT );
+				histos2D_[ "jet1SDMassvsPt11" ]->Fill( jet1SoftdropMass, jet1Pt );
+			} else if (!overlapBase && overlap ) {
+				histos2D_[ "jet1SDMassvsHT01" ]->Fill( jet1SoftdropMass, HT );
+				histos2D_[ "jet1SDMassvsPt01" ]->Fill( jet1SoftdropMass, jet1Pt );
+			} else if (overlapBase && !overlap ) {
+				histos2D_[ "jet1SDMassvsHT10" ]->Fill( jet1SoftdropMass, HT );
+				histos2D_[ "jet1SDMassvsPt10" ]->Fill( jet1SoftdropMass, jet1Pt );
+			} else { 
+				histos2D_[ "jet1SDMassvsHT00" ]->Fill( jet1SoftdropMass, HT );
+				histos2D_[ "jet1SDMassvsPt00" ]->Fill( jet1SoftdropMass, jet1Pt );
 			}
 		}
 	}
@@ -202,6 +255,20 @@ void TriggerValidationAndEfficiencies::beginJob() {
 	histos1D_[ "jet1PtDenom" ] = fs_->make< TH1D >( "jet1PtDenom", "jet1PtDenom", 1000, 0., 1000. );
 	histos1D_[ "jet1PtPassing" ] = fs_->make< TH1D >( "jet1PtPassing", "jet1PtPassing", 1000, 0., 1000. );
 
+	histos2D_[ "jet1SDMassvsHTDenom" ] = fs_->make< TH2D >( "jet1SDMassvsHTDenom", "jet1SDMassvsHTDenom", 1000, 0., 1000., 2000, 0., 2000. );
+	histos2D_[ "jet1SDMassvsHTPassing" ] = fs_->make< TH2D >( "jet1SDMassvsHTPassing", "jet1SDMassvsHTPassing",  1000, 0., 1000., 2000, 0., 2000. );
+
+	histos2D_[ "jet1SDMassvsPtDenom" ] = fs_->make< TH2D >( "jet1SDMassvsPtDenom", "jet1SDMassvsPtDenom", 1000, 0., 1000., 1000, 0., 1000. );
+	histos2D_[ "jet1SDMassvsPtPassing" ] = fs_->make< TH2D >( "jet1SDMassvsPtPassing", "jet1SDMassvsPtPassing",  1000, 0., 1000., 1000, 0., 1000. );
+
+	histos2D_[ "jet1SDMassvsHT11" ] = fs_->make< TH2D >( "jet1SDMassvsHT11", "jet1SDMassvsHT11", 1000, 0., 1000., 2000, 0., 2000. );
+	histos2D_[ "jet1SDMassvsPt11" ] = fs_->make< TH2D >( "jet1SDMassvsPt11", "jet1SDMassvsPt11", 1000, 0., 1000., 1000, 0., 1000. );
+	histos2D_[ "jet1SDMassvsHT01" ] = fs_->make< TH2D >( "jet1SDMassvsHT01", "jet1SDMassvsHT01", 1000, 0., 1000., 2000, 0., 2000. );
+	histos2D_[ "jet1SDMassvsPt01" ] = fs_->make< TH2D >( "jet1SDMassvsPt01", "jet1SDMassvsPt01", 1000, 0., 1000., 1000, 0., 1000. );
+	histos2D_[ "jet1SDMassvsHT10" ] = fs_->make< TH2D >( "jet1SDMassvsHT10", "jet1SDMassvsHT10", 1000, 0., 1000., 2000, 0., 2000. );
+	histos2D_[ "jet1SDMassvsPt10" ] = fs_->make< TH2D >( "jet1SDMassvsPt10", "jet1SDMassvsPt10", 1000, 0., 1000., 1000, 0., 1000. );
+	histos2D_[ "jet1SDMassvsHT00" ] = fs_->make< TH2D >( "jet1SDMassvsHT00", "jet1SDMassvsHT00", 1000, 0., 1000., 2000, 0., 2000. );
+	histos2D_[ "jet1SDMassvsPt00" ] = fs_->make< TH2D >( "jet1SDMassvsPt00", "jet1SDMassvsPt00", 1000, 0., 1000., 1000, 0., 1000. );
 
 	///// Sumw2 all the histos
 	for( auto const& histo : histos1D_ ) histos1D_[ histo.first ]->Sumw2();
@@ -219,10 +286,17 @@ void TriggerValidationAndEfficiencies::fillDescriptions(ConfigurationDescription
 	desc.add<string>("hltObjectMass", 	"hltPFHT1050Jet30");
 	desc.add<double>("recojetPt", 	50);
 	desc.add<bool>("AK8jets", 	true);
+	desc.add<bool>("runHLTObjects", 	true);
 	desc.add<InputTag>("recoJets", 	InputTag("slimmedJetsAK8"));
 	vector<string> HLTPass;
 	HLTPass.push_back("HLT_AK8PFHT650_TrimR0p1PT0p03Mass50");
 	desc.add<vector<string>>("triggerPass",	HLTPass);
+	vector<int> HLTOverlapBase;
+	HLTOverlapBase.push_back(0);
+	desc.add<vector<int>>("triggerOverlapBase",	HLTOverlapBase);
+	vector<int> HLTOverlap;
+	HLTOverlap.push_back(0);
+	desc.add<vector<int>>("triggerOverlap",	HLTOverlap);
 	descriptions.addDefault(desc);
 }
       
