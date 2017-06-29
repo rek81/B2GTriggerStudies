@@ -428,7 +428,7 @@ if __name__ == '__main__':
 
 	Samples = {}
 
-	Samples[ 'SingleMuon2017' ] = [ 'TriggerValAndEff_SingleMuon-Run2017A.root', 0 ] 
+	Samples[ 'SingleMuon2017' ] = [ 'TriggerValAndEff_JetHT_Run2016C.root', 0 ] 
 	Samples[ 'SingleMuonB' ] = [ 'RUNTriggerEfficiencies_SingleMuon_Run2016B_V2p4_'+args.version+'.root', 5928.83 ] 
 	Samples[ 'SingleMuonC' ] = [ 'RUNTriggerEfficiencies_SingleMuon_Run2016C_V2p4_'+args.version+'.root', 2632.18 ] 
 	Samples[ 'SingleMuonD' ] = [ 'RUNTriggerEfficiencies_SingleMuon_Run2016D_V2p4_'+args.version+'.root', 4344.64 ] 
@@ -438,7 +438,7 @@ if __name__ == '__main__':
 	Samples[ 'SingleMuonH' ] = [ 'RUNTriggerEfficiencies_SingleMuon_Run2016H_V2p4_'+args.version+'.root', 8629.24 ] 
 	Samples[ 'SingleMuonAll' ] = [ 'RUNTriggerEfficiencies_SingleMuon_Run2016_V2p4_'+args.version+'.root', 35864. ] 
 
-	Samples[ 'JetHT2017' ] = [ 'TriggerValAndEff_JetHT-Run2017A.root', 0 ] 
+	Samples[ 'JetHT2017' ] = [ 'TriggerValAndEff_JetHT_Run2016C.root', 0 ] 
 	Samples[ 'JetHTB' ] = [ 'RUNTriggerEfficiencies_JetHT_Run2016B_V2p1_'+args.version+'.root', 40.49 ] 
 	Samples[ 'JetHTC' ] = [ 'RUNTriggerEfficiencies_JetHT_Run2016C_V2p1_'+args.version+'.root', 2.13 ] 
 	Samples[ 'JetHTD' ] = [ 'RUNTriggerEfficiencies_JetHT_Run2016D_V2p1_'+args.version+'.root', 1.58 ] 
