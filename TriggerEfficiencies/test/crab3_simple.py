@@ -6,10 +6,10 @@ config.General.workArea = 'crab_projects'
 config.General.transferLogs = True
 
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = 'simpleMatching.py'
+config.JobType.psetName = 'TriggerValidationAndEfficiencies_cfg.py'
 
 config.Data.inputDataset = '/JetHT/Run2017A-PromptReco-v2/MINIAOD'
-Data.inputDBS = 'global'
+config.Data.inputDBS = 'global'
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 2
 NJOBS = 1000
