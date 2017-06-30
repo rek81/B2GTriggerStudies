@@ -1,0 +1,135 @@
+DEBUG 2017-06-29 21:51:34,508: 	 Executing command: 'submit'
+DEBUG 2017-06-29 21:51:34,513: 	 Could not find CRAB cache file /afs/cern.ch/user/r/rkowalsk/.crab3; creating a new one.
+DEBUG 2017-06-29 21:51:34,523: 	 Checking credentials
+DEBUG 2017-06-29 21:51:34,523: 	 Found proxy file /tmp/x509up_u104046
+DEBUG 2017-06-29 21:51:34,524: 	 Getting proxy life time left
+DEBUG 2017-06-29 21:51:35,128: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u104046 -timeleft
+ output : 43168
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:35,635: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u104046 -actimeleft
+ output : 43168
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:35,636: 	 Proxy valid for 11:59:28 hours
+DEBUG 2017-06-29 21:51:35,636: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2017-06-29 21:51:35,838: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rkowalsk/CN=821643/CN=Rebecca Elizabeth Kowalski
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:35,838: 	 Checking credentials
+DEBUG 2017-06-29 21:51:35,839: 	 Found proxy file /tmp/x509up_u104046
+DEBUG 2017-06-29 21:51:35,839: 	 Getting proxy life time left
+DEBUG 2017-06-29 21:51:36,347: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u104046 -timeleft
+ output : 43167
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:36,854: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u104046 -actimeleft
+ output : 43167
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:36,854: 	 Proxy valid for 11:59:27 hours
+DEBUG 2017-06-29 21:51:37,361: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u104046 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:37,759: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+DEBUG 2017-06-29 21:51:37,866: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rkowalsk/CN=821643/CN=Rebecca Elizabeth Kowalski
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:37,866: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2017-06-29 21:51:37,866: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rkowalsk/CN=821643/CN=Rebecca Elizabeth Kowalski_cmsweb.cern.ch for credential name
+DEBUG 2017-06-29 21:51:38,171: 	 Executing : 
+ command : myproxy-info -l 0e7d48f45dfe5bf263f31344d1473e0dfaebdc79 -s myproxy.cern.ch
+ output : username: 0e7d48f45dfe5bf263f31344d1473e0dfaebdc79
+owner: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rkowalsk/CN=821643/CN=Rebecca Elizabeth Kowalski
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  timeleft: 213:28:37  (8.9 days)
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:38,173: 	 Myproxy is valid: 768517
+DEBUG 2017-06-29 21:51:38,276: 	 Executing : 
+ command : openssl x509 -noout -in ~/.globus/usercert.pem -dates
+ output : notBefore=May 17 15:31:46 2017 GMT
+notAfter=Jun 21 15:31:46 2018 GMT
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:38,313: 	 Delegating a myproxy for 720:00 hours
+DEBUG 2017-06-29 21:51:38,313: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rkowalsk/CN=821643/CN=Rebecca Elizabeth Kowalski_cmsweb.cern.ch for credential name
+DEBUG 2017-06-29 21:51:45,034: 	 Executing : 
+ command : export GT_PROXY_MODE=rfc ; myproxy-init -d -n -s myproxy.cern.ch -x -R '/DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch' -x -Z '/DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch' -l '0e7d48f45dfe5bf263f31344d1473e0dfaebdc79' -t 168:00 -c 720:00
+ output : Your identity: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rkowalsk/CN=821643/CN=Rebecca Elizabeth Kowalski
+Creating proxy .......................................................................... Done
+Proxy Verify OK
+Your proxy is valid until: Sat Jul 29 21:51:44 2017
+A proxy valid for 720 hours (30.0 days) for user 0e7d48f45dfe5bf263f31344d1473e0dfaebdc79 now exists on myproxy.cern.ch.
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:45,035: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rkowalsk/CN=821643/CN=Rebecca Elizabeth Kowalski_cmsweb.cern.ch for credential name
+DEBUG 2017-06-29 21:51:45,239: 	 Executing : 
+ command : myproxy-info -l 0e7d48f45dfe5bf263f31344d1473e0dfaebdc79 -s myproxy.cern.ch
+ output : username: 0e7d48f45dfe5bf263f31344d1473e0dfaebdc79
+owner: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rkowalsk/CN=821643/CN=Rebecca Elizabeth Kowalski
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  timeleft: 719:59:59  (30.0 days)
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 21:51:45,240: 	 My-proxy delegated.
+DEBUG 2017-06-29 21:51:45,240: 	 Command use: submit
+DEBUG 2017-06-29 21:51:45,240: 	 Options use: ['--config', <WMCore.Configuration.Configuration object at 0x7faf6c163310>]
+DEBUG 2017-06-29 21:51:45,628: 	 CRABClient version: 3.3.1706
+DEBUG 2017-06-29 21:51:45,628: 	 Instance is prod
+DEBUG 2017-06-29 21:51:45,628: 	 Server base url is cmsweb.cern.ch
+DEBUG 2017-06-29 21:51:45,628: 	 Command url /crabserver/prod/workflow
+DEBUG 2017-06-29 21:51:45,628: 	 Started submission
+DEBUG 2017-06-29 21:51:45,628: 	 Working on /afs/cern.ch/user/r/rkowalsk/CMSSW_9_2_3_patch1/src/B2GTriggerStudies/TriggerEfficiencies/test/crab_projects/crab_SingleMuon-03Feb2017_v01
+DEBUG 2017-06-29 21:51:46,102: 	 Loading required information from the environment
+DEBUG 2017-06-29 21:51:46,102: 	 Found CMSSW_9_2_3_patch1 for slc6_amd64_gcc530 with base /afs/cern.ch/user/r/rkowalsk/CMSSW_9_2_3_patch1
+DEBUG 2017-06-29 21:51:46,102: 	 Loading required information from the environment
+DEBUG 2017-06-29 21:51:46,102: 	 Found CMSSW_9_2_3_patch1 for slc6_amd64_gcc530 with base /afs/cern.ch/user/r/rkowalsk/CMSSW_9_2_3_patch1
+DEBUG 2017-06-29 21:51:46,118: 	 UNIQUE NAME: tarUUID d9e9cb2c-8901-41eb-a4c5-ccc72a02f2a0 
+DEBUG 2017-06-29 21:51:46,118: 	 self.config: from WMCore.Configuration import Configuration
+config = Configuration()
+config.section_('General')
+config.General.workArea = 'crab_projects'
+config.General.requestName = 'SingleMuon-03Feb2017_v01'
+config.section_('JobType')
+config.JobType.psetName = 'RUNTriggerEfficiency_cfg.py'
+config.JobType.pluginName = 'Analysis'
+config.JobType.pyCfgParams = ['PROC=SingleMuon-03Feb2017_v01', 'jecVersion=80X_dataRun2_2016SeptRepro_v7', 'version=Dijet']
+config.JobType.allowUndistributedCMSSW = True
+config.section_('Data')
+config.Data.inputDataset = '/SingleMuon/Run2016B-03Feb2017_ver2-v2/MINIAOD'
+config.Data.publication = False
+config.Data.unitsPerJob = 10
+config.Data.ignoreLocality = True
+config.Data.splitting = 'LumiBased'
+config.Data.lumiMask = '/afs/cern.ch/work/a/algomez/RPVStops/CMSSW_8_0_20/src/RUNA/RUNAnalysis/test/supportFiles/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt'
+config.Data.outLFNDirBase = '/store/user/rkowalsk/EOS/'
+config.section_('Site')
+config.Site.storageSite = 'T3_US_Rutgers'
+config.section_('User')
+config.section_('Debug')
+
+DEBUG 2017-06-29 21:51:46,118: 	 self.config.JobType.psetName: RUNTriggerEfficiency_cfg.py

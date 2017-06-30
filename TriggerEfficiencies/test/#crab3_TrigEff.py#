@@ -21,7 +21,7 @@ config.JobType.psetName = 'RUNTriggerEfficiency_cfg.py'
 config.JobType.allowUndistributedCMSSW = True
 
 config.Data.inputDataset = ''
-config.Data.outLFNDirBase = '/store/user/rkowalsk/EOS/'
+config.Data.outLFNDirBase = '/store/user/algomez/'
 config.Data.publication = False
 config.Data.ignoreLocality = True
 config.Data.splitting = 'LumiBased'
@@ -29,7 +29,8 @@ config.Data.unitsPerJob = 10
 
 #config.Site.storageSite = 'T3_US_FNALLPC'
 config.Site.storageSite = 'T3_US_Rutgers'
-config.Data.outLFNDirBase = '/store/user/rkowalsk/EOS/'
+config.Data.outLFNDirBa
+
 
 def submit(config):
 	try:

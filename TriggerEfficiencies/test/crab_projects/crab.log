@@ -1,0 +1,32 @@
+DEBUG 2017-06-29 22:04:51,933: 	 Executing command: 'status'
+DEBUG 2017-06-29 22:04:51,933: 	 Found CRAB cache file /afs/cern.ch/user/r/rkowalsk/.crab3
+DEBUG 2017-06-29 22:04:51,971: 	 Checking credentials
+DEBUG 2017-06-29 22:04:51,972: 	 Found proxy file /tmp/x509up_u104046
+DEBUG 2017-06-29 22:04:51,972: 	 Getting proxy life time left
+DEBUG 2017-06-29 22:04:53,303: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u104046 -timeleft
+ output : 42370
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 22:04:54,339: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u104046 -actimeleft
+ output : 42369
+
+ error: 
+ retcode : 0
+DEBUG 2017-06-29 22:04:54,340: 	 Proxy valid for 11:46:10 hours
+ERROR 2017-06-29 22:04:54,348: 	 Cannot find .requestcache file in CRAB project directory /afs/cern.ch/user/r/rkowalsk/CMSSW_9_2_3_patch1/src/B2GTriggerStudies/TriggerEfficiencies/test/crab_projects/crab_SingleMuon-Run2016B-23Sep2016-v3_v01
+ERROR 2017-06-29 22:04:54,348: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1706/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1706/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1706/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 38, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1706/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 321, in __init__
+    self.loadLocalCache(proxyOptsSetPlace)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1706/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 450, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /afs/cern.ch/user/r/rkowalsk/CMSSW_9_2_3_patch1/src/B2GTriggerStudies/TriggerEfficiencies/test/crab_projects/crab_SingleMuon-Run2016B-23Sep2016-v3_v01
